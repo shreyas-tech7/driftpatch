@@ -73,7 +73,7 @@ def wilson(k: int, n: int, z: float = 1.959964):
 def bootstrap_mean(values, seed=BOOTSTRAP_SEED, rounds=BOOTSTRAP_ROUNDS):
     if not values:
         return [0.0, 0.0]
-    rng = random.Random(seed)
+    rng = random.Random(seed)  # noqa: S311 (bootstrap resampling, not security)
     means = sorted(statistics.fmean(rng.choices(values, k=len(values))) for _ in range(rounds))
     return [round(means[int(0.025 * rounds)], 4), round(means[int(0.975 * rounds) - 1], 4)]
 

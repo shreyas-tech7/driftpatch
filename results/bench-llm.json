@@ -1,0 +1,837 @@
+{
+  "meta": {
+    "proposer": "llm",
+    "status": "not run",
+    "model": "see fixtures",
+    "llm_mode": "replay",
+    "date": "2026-11-20",
+    "seed": "none for the pipeline (deterministic). Bootstrap seed 7, 2000 rounds.",
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.30GHz",
+    "cores_available": 4,
+    "python": "3.13.18",
+    "frozen_files_checked": 117,
+    "seconds": 25.48
+  },
+  "summary": {
+    "all": {
+      "cases": 0,
+      "not_run": 36,
+      "verified": 0,
+      "verified_rate": null,
+      "verified_ci95": [
+        0.0,
+        0.0
+      ],
+      "test_pass_rate": null,
+      "test_pass_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "regressions": 0,
+      "patch_lines_median": 0,
+      "patches_proposed": 0,
+      "tokens": 0
+    },
+    "dev": {
+      "cases": 0,
+      "not_run": 25,
+      "verified": 0,
+      "verified_rate": null,
+      "verified_ci95": [
+        0.0,
+        0.0
+      ],
+      "test_pass_rate": null,
+      "test_pass_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "regressions": 0,
+      "patch_lines_median": 0,
+      "patches_proposed": 0,
+      "tokens": 0
+    },
+    "heldout": {
+      "cases": 0,
+      "not_run": 11,
+      "verified": 0,
+      "verified_rate": null,
+      "verified_ci95": [
+        0.0,
+        0.0
+      ],
+      "test_pass_rate": null,
+      "test_pass_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "regressions": 0,
+      "patch_lines_median": 0,
+      "patches_proposed": 0,
+      "tokens": 0
+    }
+  },
+  "unpatched_test_pass_rate": {
+    "C001": 0.4,
+    "C002": 0.8889,
+    "C003": 0.4,
+    "C004": 0.8889,
+    "C005": 0.9,
+    "C006": 0.8889,
+    "C007": 0.9,
+    "C008": 0.8889,
+    "C009": 0.9,
+    "C010": 0.8889,
+    "C011": 0.9,
+    "C012": 0.7778,
+    "C013": 0.9,
+    "C014": 0.8,
+    "C015": 0.8889,
+    "C016": 0.9,
+    "C017": 0.8889,
+    "C018": 0.9,
+    "C019": 0.8889,
+    "C020": 0.9,
+    "C021": 0.8889,
+    "C022": 0.4,
+    "C023": 0.9,
+    "C024": 0.9,
+    "C025": 0.8889,
+    "C026": 0.9,
+    "C027": 0.8889,
+    "C028": 0.9,
+    "C029": 0.8889,
+    "C030": 0.9,
+    "C031": 0.9,
+    "C032": 0.8889,
+    "C033": 0.9,
+    "C034": 0.4,
+    "C035": 0.8889,
+    "C036": 0.4
+  },
+  "cases": [
+    {
+      "id": "C001",
+      "title": "Order.total renamed to total_amount",
+      "language": "python",
+      "split": "dev",
+      "kinds": [
+        "renamed-field"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 13dad7bfab27 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.003
+    },
+    {
+      "id": "C002",
+      "title": "Order.total renamed to total_amount",
+      "language": "ts",
+      "split": "dev",
+      "kinds": [
+        "renamed-field"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt e63f81429fb9 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.002
+    },
+    {
+      "id": "C003",
+      "title": "Order.customer_email renamed to email in responses",
+      "language": "python",
+      "split": "dev",
+      "kinds": [
+        "renamed-field"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 25ee5c675e5e in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.003
+    },
+    {
+      "id": "C004",
+      "title": "Customer.name renamed to full_name",
+      "language": "ts",
+      "split": "heldout",
+      "kinds": [
+        "renamed-field"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 53344eeb0883 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.001
+    },
+    {
+      "id": "C005",
+      "title": "Shipment.tracking_number renamed to tracking_code",
+      "language": "python",
+      "split": "heldout",
+      "kinds": [
+        "renamed-field"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 9f208490818d in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.002
+    },
+    {
+      "id": "C006",
+      "title": "LineItem.unit_price renamed to price",
+      "language": "ts",
+      "split": "dev",
+      "kinds": [
+        "renamed-field"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 1e6aaaae400a in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.001
+    },
+    {
+      "id": "C007",
+      "title": "Refund.status renamed to state (Order also has a status field)",
+      "language": "python",
+      "split": "dev",
+      "kinds": [
+        "renamed-field"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 451803fc24e5 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.002
+    },
+    {
+      "id": "C008",
+      "title": "Order.created_at renamed to created",
+      "language": "ts",
+      "split": "dev",
+      "kinds": [
+        "renamed-field"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 080b95f62057 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.001
+    },
+    {
+      "id": "C009",
+      "title": "CreateOrder.customer_email renamed to email in requests",
+      "language": "python",
+      "split": "dev",
+      "kinds": [
+        "renamed-field"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt f5100bb912c2 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.002
+    },
+    {
+      "id": "C010",
+      "title": "CreateOrder.note renamed to comment",
+      "language": "ts",
+      "split": "dev",
+      "kinds": [
+        "renamed-field"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 2905a306065c in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.001
+    },
+    {
+      "id": "C011",
+      "title": "CreateRefund.amount renamed to refund_amount",
+      "language": "python",
+      "split": "dev",
+      "kinds": [
+        "renamed-field"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt d6ea6d2903a4 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.002
+    },
+    {
+      "id": "C012",
+      "title": "CancelRequest.reason renamed to cancel_reason",
+      "language": "ts",
+      "split": "dev",
+      "kinds": [
+        "renamed-field"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt cbe682e7a2a4 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.001
+    },
+    {
+      "id": "C013",
+      "title": "LineItemInput.quantity renamed to qty",
+      "language": "python",
+      "split": "dev",
+      "kinds": [
+        "renamed-field"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt ba511f33560b in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.002
+    },
+    {
+      "id": "C014",
+      "title": "GET /orders needs a currency query parameter (default USD)",
+      "language": "python",
+      "split": "heldout",
+      "kinds": [
+        "new-required-parameter"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt e3683bc2ba4e in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.002
+    },
+    {
+      "id": "C015",
+      "title": "GET /orders needs a currency query parameter (default USD)",
+      "language": "ts",
+      "split": "dev",
+      "kinds": [
+        "new-required-parameter"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 02e91f61e858 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.001
+    },
+    {
+      "id": "C016",
+      "title": "GET /orders/{order_id}/items needs an expand query parameter (default none)",
+      "language": "python",
+      "split": "dev",
+      "kinds": [
+        "new-required-parameter"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt ae9c3a3d1154 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.002
+    },
+    {
+      "id": "C017",
+      "title": "GET /customers/{customer_id} needs a fields query parameter (default basic)",
+      "language": "ts",
+      "split": "dev",
+      "kinds": [
+        "new-required-parameter"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt c01ae248cdb2 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.001
+    },
+    {
+      "id": "C018",
+      "title": "GET /orders/{order_id}/shipment needs a region query parameter (no default)",
+      "language": "python",
+      "split": "dev",
+      "kinds": [
+        "new-required-parameter"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 3624bc366247 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.002
+    },
+    {
+      "id": "C019",
+      "title": "GET /orders needs an api_version query parameter (no default)",
+      "language": "ts",
+      "split": "heldout",
+      "kinds": [
+        "new-required-parameter"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 7364d72e0610 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.001
+    },
+    {
+      "id": "C020",
+      "title": "CreateOrder.note removed from requests",
+      "language": "python",
+      "split": "dev",
+      "kinds": [
+        "removed-field"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 034f738ac0f5 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.002
+    },
+    {
+      "id": "C021",
+      "title": "CreateRefund.reason removed from requests",
+      "language": "ts",
+      "split": "dev",
+      "kinds": [
+        "removed-field"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 3c77ab56fb59 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.001
+    },
+    {
+      "id": "C022",
+      "title": "Order.note removed from responses",
+      "language": "python",
+      "split": "dev",
+      "kinds": [
+        "removed-field"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 6782ca32ca9c in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.003
+    },
+    {
+      "id": "C023",
+      "title": "Shipment.carrier removed from responses",
+      "language": "python",
+      "split": "heldout",
+      "kinds": [
+        "removed-field"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt da357178285c in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.002
+    },
+    {
+      "id": "C024",
+      "title": "LineItemInput.quantity changed from integer to string",
+      "language": "python",
+      "split": "dev",
+      "kinds": [
+        "changed-type"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 454688495f4a in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.002
+    },
+    {
+      "id": "C025",
+      "title": "LineItemInput.quantity changed from integer to string",
+      "language": "ts",
+      "split": "heldout",
+      "kinds": [
+        "changed-type"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 998edc9f36e1 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.001
+    },
+    {
+      "id": "C026",
+      "title": "Order.total changed from number to string",
+      "language": "python",
+      "split": "dev",
+      "kinds": [
+        "changed-type"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 3006dd9060d7 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.003
+    },
+    {
+      "id": "C027",
+      "title": "CreateRefund.amount changed from number to string",
+      "language": "ts",
+      "split": "dev",
+      "kinds": [
+        "changed-type"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 41948d777f82 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.001
+    },
+    {
+      "id": "C028",
+      "title": "Order status value open renamed to active",
+      "language": "python",
+      "split": "dev",
+      "kinds": [
+        "changed-enum"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt fcf5914d5c90 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.003
+    },
+    {
+      "id": "C029",
+      "title": "Cancel reason fraud renamed to suspected_fraud",
+      "language": "ts",
+      "split": "heldout",
+      "kinds": [
+        "changed-enum"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 36ff804feb48 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.001
+    },
+    {
+      "id": "C030",
+      "title": "Order status value cancelled respelled as canceled",
+      "language": "python",
+      "split": "heldout",
+      "kinds": [
+        "changed-enum"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt d7198b0d5be7 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.003
+    },
+    {
+      "id": "C031",
+      "title": "POST /orders/{order_id}/cancel moved to /orders/{order_id}/cancellation",
+      "language": "python",
+      "split": "dev",
+      "kinds": [
+        "removed-endpoint"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 49c0e3bb907c in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.002
+    },
+    {
+      "id": "C032",
+      "title": "GET /orders/{order_id}/items moved to /orders/{order_id}/line-items",
+      "language": "ts",
+      "split": "heldout",
+      "kinds": [
+        "removed-endpoint"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt ddd42cd93d99 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.001
+    },
+    {
+      "id": "C033",
+      "title": "GET /customers/{customer_id} moved to /accounts/{customer_id}",
+      "language": "python",
+      "split": "dev",
+      "kinds": [
+        "removed-endpoint"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 092d6f60e162 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.002
+    },
+    {
+      "id": "C034",
+      "title": "Two changes: Order.total renamed and a required currency parameter",
+      "language": "python",
+      "split": "heldout",
+      "kinds": [
+        "new-required-parameter",
+        "renamed-field"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt fc3eeb6cefd5 in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.003
+    },
+    {
+      "id": "C035",
+      "title": "Two changes: CreateOrder.note renamed and quantity changed to string",
+      "language": "ts",
+      "split": "dev",
+      "kinds": [
+        "changed-type",
+        "renamed-field"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 6f47a732d47f in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.001
+    },
+    {
+      "id": "C036",
+      "title": "Two changes: cancel endpoint moved and Order.note removed",
+      "language": "python",
+      "split": "heldout",
+      "kinds": [
+        "removed-endpoint",
+        "removed-field"
+      ],
+      "outcome": "error",
+      "verified": false,
+      "error": "not run: no recording for prompt 66b8d46cfacf in fixtures/llm/llama-3.3-70b-versatile",
+      "tests_total": null,
+      "tests_failing_before": null,
+      "after_pass_rate": null,
+      "regressions": 0,
+      "patch_lines": 0,
+      "tokens": 0,
+      "declined": [],
+      "seconds": 0.003
+    }
+  ]
+}

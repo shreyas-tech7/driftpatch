@@ -166,9 +166,9 @@ class LLMProposer:
         headers = {"Content-Type": "application/json"}
         if key:
             headers["Authorization"] = f"Bearer {key}"
-        req = urllib.request.Request(url, data=json.dumps(payload).encode(), headers=headers, method="POST")
+        req = urllib.request.Request(url, data=json.dumps(payload).encode(), headers=headers, method="POST")  # noqa: S310 (Endpoint only accepts https)
         try:
-            with urllib.request.urlopen(req, timeout=60) as resp:
+            with urllib.request.urlopen(req, timeout=60) as resp:  # noqa: S310 (Endpoint only accepts https)
                 return resp.status, resp.read().decode()
         except urllib.error.HTTPError as err:
             return err.code, err.read().decode(errors="replace")

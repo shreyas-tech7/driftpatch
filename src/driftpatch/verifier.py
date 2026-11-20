@@ -66,7 +66,7 @@ def _parse_junit(xml_path: Path) -> dict:
     results = {}
     if not xml_path.exists():
         return results
-    root = ET.parse(xml_path).getroot()
+    root = ET.parse(xml_path).getroot()  # noqa: S314 (JUnit XML from the test run we started. The client code already runs as the user)
     for case in root.iter("testcase"):
         name = f"{case.get('classname', '')}::{case.get('name', '')}".strip(":")
         bad = any(child.tag in ("failure", "error") for child in case) or case.get("failure")
@@ -94,7 +94,7 @@ def run_tests(client_dir, base_url, language=None, timeout=DEFAULT_TIMEOUT) -> T
     else:
         raise ValueError(f"unknown language {language!r}")
     try:
-        proc = subprocess.run(cmd, cwd=client_dir, env=env, capture_output=True, text=True, timeout=timeout)
+        proc = subprocess.run(cmd, cwd=client_dir, env=env, capture_output=True, text=True, timeout=timeout)  # noqa: S603 (fixed argv, no shell)
     except subprocess.TimeoutExpired:
         return TestRun(returncode=-1, error=f"tests timed out after {timeout}s")
     except FileNotFoundError as err:

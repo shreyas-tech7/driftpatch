@@ -1,0 +1,899 @@
+{
+  "date": "2026-11-20",
+  "samples": 20,
+  "repos": {
+    "stripe": {
+      "repo": "stripe/openapi",
+      "file": "openapi/spec3.json",
+      "tags_listed": 2602,
+      "tags_sampled": [
+        "v1",
+        "v138",
+        "v275",
+        "v412",
+        "v549",
+        "v685",
+        "v822",
+        "v959",
+        "v1096",
+        "v1233",
+        "v1370",
+        "v1507",
+        "v1644",
+        "v1781",
+        "v1918",
+        "v2054",
+        "v2191",
+        "v2328",
+        "v2465",
+        "v2602"
+      ],
+      "pairs": [
+        {
+          "from": "v1",
+          "to": "v138",
+          "builtin": {
+            "removed-endpoint": 6,
+            "renamed-field": 11,
+            "removed-field": 26,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 18
+          },
+          "builtin_total": 61,
+          "oasdiff": {
+            "other": 9338,
+            "changed-enum": 38358,
+            "changed-type": 3990,
+            "removed-field": 1236,
+            "removed-endpoint": 6,
+            "new-required-parameter": 1
+          },
+          "oasdiff_total": 52929,
+          "examples": [
+            "The endpoint `PUT /v1/account/logout` was removed.",
+            "The endpoint `PUT /v1/accounts/{account}/logout` was removed.",
+            "The endpoint `GET /v1/order_returns` was removed."
+          ]
+        },
+        {
+          "from": "v138",
+          "to": "v275",
+          "builtin": {
+            "removed-endpoint": 51,
+            "renamed-field": 0,
+            "removed-field": 9,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 20
+          },
+          "builtin_total": 80,
+          "oasdiff": {
+            "removed-endpoint": 40,
+            "other": 6598,
+            "changed-enum": 63881,
+            "changed-type": 621,
+            "removed-field": 4967
+          },
+          "oasdiff_total": 76107,
+          "examples": [
+            "The endpoint `POST /v1/3d_secure` was removed.",
+            "The endpoint `GET /v1/3d_secure/{three_d_secure}` was removed.",
+            "The endpoint `DELETE /v1/account` was removed."
+          ]
+        },
+        {
+          "from": "v275",
+          "to": "v412",
+          "builtin": {
+            "removed-endpoint": 1,
+            "renamed-field": 0,
+            "removed-field": 0,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 9
+          },
+          "builtin_total": 10,
+          "oasdiff": {
+            "other": 5920,
+            "changed-enum": 33825,
+            "changed-type": 2203,
+            "removed-endpoint": 1
+          },
+          "oasdiff_total": 41949,
+          "examples": [
+            "The endpoint `POST /v1/tax/transactions` was removed.",
+            "The response enum `type` in `customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer` gained `us_bank_transfer`.",
+            "The response enum `status` in `invoice` lost `deleted`."
+          ]
+        },
+        {
+          "from": "v412",
+          "to": "v549",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 0,
+            "removed-field": 9,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 16
+          },
+          "builtin_total": 25,
+          "oasdiff": {
+            "other": 2380,
+            "changed-enum": 16171,
+            "removed-field": 14
+          },
+          "oasdiff_total": 18565,
+          "examples": [
+            "The request field `blik` in `POST /v1/setup_intents request` was removed.",
+            "The request field `persistent_token` in `POST /v1/setup_intents request` was removed.",
+            "The request field `blik` in `POST /v1/setup_intents/{intent} request` was removed."
+          ]
+        },
+        {
+          "from": "v549",
+          "to": "v685",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 0,
+            "removed-field": 3,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 5
+          },
+          "builtin_total": 8,
+          "oasdiff": {
+            "other": 2298,
+            "changed-enum": 32963,
+            "changed-type": 5,
+            "removed-field": 2
+          },
+          "oasdiff_total": 35268,
+          "examples": [
+            "The request field `rendering_options` in `POST /v1/invoices request` was removed.",
+            "The request field `rendering_options` in `POST /v1/invoices/{invoice} request` was removed.",
+            "The response field `rendering_options` in `invoice` was removed."
+          ]
+        },
+        {
+          "from": "v685",
+          "to": "v822",
+          "builtin": {
+            "removed-endpoint": 6,
+            "renamed-field": 1,
+            "removed-field": 4,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 10
+          },
+          "builtin_total": 21,
+          "oasdiff": {
+            "other": 2352,
+            "changed-enum": 17893,
+            "removed-endpoint": 6
+          },
+          "oasdiff_total": 20251,
+          "examples": [
+            "The endpoint `GET /v1/climate/reservations` was removed.",
+            "The endpoint `POST /v1/climate/reservations` was removed.",
+            "The endpoint `GET /v1/climate/reservations/{order}` was removed."
+          ]
+        },
+        {
+          "from": "v822",
+          "to": "v959",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 2,
+            "removed-field": 4,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 13
+          },
+          "builtin_total": 19,
+          "oasdiff": {
+            "changed-enum": 13581,
+            "removed-field": 820,
+            "other": 2
+          },
+          "oasdiff_total": 14403,
+          "examples": [
+            "The request field `features` in `POST /v1/products request` was renamed to `marketing_features`.",
+            "The response field `features` in `product` was renamed to `marketing_features`.",
+            "The request field `subscription_pause` in `POST /v1/billing_portal/configurations request` was removed."
+          ]
+        },
+        {
+          "from": "v959",
+          "to": "v1096",
+          "builtin": {
+            "removed-endpoint": 1,
+            "renamed-field": 3,
+            "removed-field": 6,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 8
+          },
+          "builtin_total": 18,
+          "oasdiff": {
+            "other": 843,
+            "changed-enum": 17495,
+            "changed-type": 2,
+            "removed-field": 13,
+            "removed-endpoint": 1
+          },
+          "oasdiff_total": 18354,
+          "examples": [
+            "The endpoint `GET /v1/issuing/settlements` was removed.",
+            "The request field `volume_decimal` in `POST /v1/test_helpers/issuing/authorizations/{authorization}/capture request` was renamed to `quantity_decimal`.",
+            "The request field `volume_decimal` in `POST /v1/test_helpers/issuing/transactions/create_force_capture request` was renamed to `quantity_decimal`."
+          ]
+        },
+        {
+          "from": "v1096",
+          "to": "v1233",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 0,
+            "removed-field": 0,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 6
+          },
+          "builtin_total": 6,
+          "oasdiff": {
+            "other": 5448,
+            "changed-enum": 5967,
+            "changed-type": 1686
+          },
+          "oasdiff_total": 13101,
+          "examples": [
+            "The response enum `purpose` in `file` gained `issuing_regulatory_reporting`.",
+            "The response enum `type` in `invoices_resource_invoice_tax_id` gained `hr_oib`.",
+            "The response enum `network` in `issuing.settlement` gained `maestro`."
+          ]
+        },
+        {
+          "from": "v1233",
+          "to": "v1370",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 1,
+            "removed-field": 6,
+            "new-required-parameter": 1,
+            "changed-type": 0,
+            "changed-enum": 17
+          },
+          "builtin_total": 25,
+          "oasdiff": {
+            "other": 2646,
+            "changed-enum": 35327,
+            "changed-type": 855,
+            "new-required-parameter": 1,
+            "removed-field": 4
+          },
+          "oasdiff_total": 38833,
+          "examples": [
+            "The request field `usage_threshold_config` in `POST /v1/billing/alerts request` was renamed to `usage_threshold`.",
+            "The request field `filter` in `POST /v1/billing/alerts request` was removed.",
+            "The request field `spend_threshold_config` in `POST /v1/billing/alerts request` was removed."
+          ]
+        },
+        {
+          "from": "v1370",
+          "to": "v1507",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 0,
+            "removed-field": 0,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 6
+          },
+          "builtin_total": 6,
+          "oasdiff": {
+            "other": 1810,
+            "changed-enum": 37508,
+            "changed-type": 98
+          },
+          "oasdiff_total": 39416,
+          "examples": [
+            "The response enum `type` in `balance_transaction` gained `payout_minimum_balance_hold`, `payout_minimum_balance_release`.",
+            "The response enum `type` in `invoices_resource_invoice_tax_id` gained `al_tin`, `am_tin`, `ao_tin`, `ba_tin`, `bb_tin`, `bs_tin`, `cd_nif`, `gn_nif`, `kh_tin`, `me_pib`, `mk_vat`, `mr_nif`, `np_pan`, `sn_ninea`, `sr_fin`, `tj_tin`, `ug_tin`, `zm_tin`, `zw_tin`.",
+            "The response enum `type` in `outbound_transfers_payment_method_details` gained `financial_account`."
+          ]
+        },
+        {
+          "from": "v1507",
+          "to": "v1644",
+          "builtin": {
+            "removed-endpoint": 4,
+            "renamed-field": 12,
+            "removed-field": 76,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 10
+          },
+          "builtin_total": 102,
+          "oasdiff": {
+            "other": 2087,
+            "changed-enum": 15087,
+            "removed-field": 10889,
+            "removed-endpoint": 4,
+            "new-required-parameter": 1
+          },
+          "oasdiff_total": 28068,
+          "examples": [
+            "The endpoint `GET /v1/invoices/upcoming` was removed.",
+            "The endpoint `GET /v1/invoices/upcoming/lines` was removed.",
+            "The endpoint `GET /v1/subscription_items/{subscription_item}/usage_record_summaries` was removed."
+          ]
+        },
+        {
+          "from": "v1644",
+          "to": "v1781",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 0,
+            "removed-field": 0,
+            "new-required-parameter": 1,
+            "changed-type": 0,
+            "changed-enum": 6
+          },
+          "builtin_total": 7,
+          "oasdiff": {
+            "other": 1778,
+            "changed-enum": 20685,
+            "new-required-parameter": 1
+          },
+          "oasdiff_total": 22464,
+          "examples": [
+            "The request parameter `meter` of `POST /v1/billing/alerts request` is now required. It has no default.",
+            "The response enum `code` in `account_requirements_error` gained `verification_legal_entity_structure_mismatch`.",
+            "The response enum `type` in `credit_note` gained `mixed`."
+          ]
+        },
+        {
+          "from": "v1781",
+          "to": "v1918",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 0,
+            "removed-field": 0,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 8
+          },
+          "builtin_total": 8,
+          "oasdiff": {
+            "other": 6525,
+            "changed-enum": 13487
+          },
+          "oasdiff_total": 20012,
+          "examples": [
+            "The response enum `status` in `capability` lost `disabled`.",
+            "The response enum `case_type` in `dispute_payment_method_details_card` gained `compliance`.",
+            "The response enum `type` in `payment_method` gained `crypto`."
+          ]
+        },
+        {
+          "from": "v1918",
+          "to": "v2054",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 3,
+            "removed-field": 6,
+            "new-required-parameter": 1,
+            "changed-type": 0,
+            "changed-enum": 6
+          },
+          "builtin_total": 16,
+          "oasdiff": {
+            "changed-enum": 8196,
+            "removed-field": 4002,
+            "new-required-parameter": 1
+          },
+          "oasdiff_total": 12199,
+          "examples": [
+            "The response field `coupon` in `deleted_discount` was renamed to `source`.",
+            "The response field `coupon` in `discount` was renamed to `source`.",
+            "The response field `coupon` in `promotion_code` was renamed to `promotion`."
+          ]
+        },
+        {
+          "from": "v2054",
+          "to": "v2191",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 1,
+            "removed-field": 0,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 13
+          },
+          "builtin_total": 14,
+          "oasdiff": {
+            "other": 2723,
+            "changed-enum": 40073,
+            "changed-type": 905,
+            "removed-field": 5
+          },
+          "oasdiff_total": 43706,
+          "examples": [
+            "The response field `bgn` in `terminal_configuration_configuration_resource_tipping` was renamed to `gip`.",
+            "The response enum `balance_type` in `balance_transaction` gained `risk_reserved`.",
+            "The response enum `type` in `balance_transaction` gained `reserve_hold`, `reserve_release`."
+          ]
+        },
+        {
+          "from": "v2191",
+          "to": "v2328",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 2,
+            "removed-field": 7,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 14
+          },
+          "builtin_total": 23,
+          "oasdiff": {
+            "other": 14936,
+            "changed-enum": 41397,
+            "changed-type": 931,
+            "removed-field": 10,
+            "new-required-parameter": 2
+          },
+          "oasdiff_total": 57276,
+          "examples": [
+            "The request field `risk_level` in `POST /v1/test_helpers/issuing/authorizations request` was renamed to `level`.",
+            "The response field `insights` in `radar.payment_evaluation` was renamed to `signals`.",
+            "The request field `amount` in `POST /v1/terminal/refunds request` was removed."
+          ]
+        },
+        {
+          "from": "v2328",
+          "to": "v2465",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 0,
+            "removed-field": 3,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 8
+          },
+          "builtin_total": 11,
+          "oasdiff": {
+            "other": 931,
+            "changed-enum": 20520,
+            "changed-type": 1,
+            "removed-field": 9
+          },
+          "oasdiff_total": 21461,
+          "examples": [
+            "The request field `proof_of_registration` in `POST /v1/accounts request` was removed.",
+            "The request field `dynamic_tax_rates` in `POST /v1/checkout/sessions request` was removed.",
+            "The response field `iin` in `card` was removed."
+          ]
+        },
+        {
+          "from": "v2465",
+          "to": "v2602",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 1,
+            "removed-field": 11,
+            "new-required-parameter": 0,
+            "changed-type": 2,
+            "changed-enum": 10
+          },
+          "builtin_total": 24,
+          "oasdiff": {
+            "other": 1888,
+            "changed-enum": 19999,
+            "changed-type": 943,
+            "new-required-parameter": 3,
+            "removed-field": 36
+          },
+          "oasdiff_total": 22869,
+          "examples": [
+            "The request field `payment_method_types` in `POST /v1/checkout/sessions request` was renamed to `allowed_payment_method_types`.",
+            "The request field `countries` in `POST /v1/financial_connections/sessions request` was removed.",
+            "The request field `countries` in `POST /v1/link_account_sessions request` was removed."
+          ]
+        }
+      ],
+      "builtin_totals": {
+        "removed-endpoint": 69,
+        "renamed-field": 37,
+        "removed-field": 170,
+        "new-required-parameter": 3,
+        "changed-type": 2,
+        "changed-enum": 203
+      },
+      "builtin_total": 484,
+      "pairs_with_breaking": 19,
+      "oasdiff_totals": {
+        "changed-enum": 492413,
+        "changed-type": 12240,
+        "new-required-parameter": 10,
+        "other": 70503,
+        "removed-endpoint": 58,
+        "removed-field": 22007
+      },
+      "oasdiff_total": 597231
+    },
+    "github": {
+      "repo": "github/rest-api-description",
+      "file": "descriptions/api.github.com/api.github.com.json",
+      "tags_listed": 18,
+      "tags_sampled": [
+        "v0.0.1",
+        "v0.0.2",
+        "v0.0.3",
+        "v0.0.4",
+        "v0.0.5",
+        "v0.0.6",
+        "v1.0.0-rc.1",
+        "v1.0.0-rc.2",
+        "v1.0.0-rc.3",
+        "v1.0.0-rc.4",
+        "v1.0.0",
+        "v1.1.0",
+        "v1.1.1",
+        "v1.1.2",
+        "v1.1.3",
+        "v1.1.4",
+        "v2.0.0",
+        "v2.1.0"
+      ],
+      "pairs": [
+        {
+          "from": "v0.0.1",
+          "to": "v0.0.2",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 0,
+            "removed-field": 0,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 0
+          },
+          "builtin_total": 0,
+          "oasdiff": {},
+          "oasdiff_total": 0,
+          "examples": []
+        },
+        {
+          "from": "v0.0.2",
+          "to": "v0.0.3",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 0,
+            "removed-field": 0,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 0
+          },
+          "builtin_total": 0,
+          "oasdiff": {},
+          "oasdiff_total": 0,
+          "examples": []
+        },
+        {
+          "from": "v0.0.3",
+          "to": "v0.0.4",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 0,
+            "removed-field": 1,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 0
+          },
+          "builtin_total": 1,
+          "oasdiff": {
+            "removed-field": 1
+          },
+          "oasdiff_total": 1,
+          "examples": [
+            "The request field `name` in `PATCH /repos/{owner}/{repo}/labels/{name} request` was removed."
+          ]
+        },
+        {
+          "from": "v0.0.4",
+          "to": "v0.0.5",
+          "builtin": {
+            "removed-endpoint": 5,
+            "renamed-field": 0,
+            "removed-field": 0,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 0
+          },
+          "builtin_total": 5,
+          "oasdiff": {
+            "removed-endpoint": 5
+          },
+          "oasdiff_total": 5,
+          "examples": [
+            "The endpoint `GET /` was removed.",
+            "The endpoint `GET /octocat` was removed.",
+            "The endpoint `GET /repos/{owner}/{repo}/tarball/{ref}` was removed."
+          ]
+        },
+        {
+          "from": "v0.0.5",
+          "to": "v0.0.6",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 0,
+            "removed-field": 1,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 0
+          },
+          "builtin_total": 1,
+          "oasdiff": {
+            "other": 9,
+            "removed-field": 13
+          },
+          "oasdiff_total": 22,
+          "examples": [
+            "The request field `name` in `PATCH /repos/{owner}/{repo}/labels/{name} request` was removed."
+          ]
+        },
+        {
+          "from": "v0.0.6",
+          "to": "v1.0.0-rc.1",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 2,
+            "removed-field": 5,
+            "new-required-parameter": 8,
+            "changed-type": 1,
+            "changed-enum": 0
+          },
+          "builtin_total": 16,
+          "oasdiff": {
+            "other": 3,
+            "changed-type": 2,
+            "new-required-parameter": 6
+          },
+          "oasdiff_total": 11,
+          "examples": [
+            "The response field `closed_at` in `code-scanning-alert` was renamed to `dismissed_at`.",
+            "The response field `closed_reason` in `code-scanning-alert` was renamed to `dismissed_reason`.",
+            "The response field `closed_by` in `code-scanning-alert` was removed."
+          ]
+        },
+        {
+          "from": "v1.0.0-rc.1",
+          "to": "v1.0.0-rc.2",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 0,
+            "removed-field": 0,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 0
+          },
+          "builtin_total": 0,
+          "oasdiff": {},
+          "oasdiff_total": 0,
+          "examples": []
+        },
+        {
+          "from": "v1.0.0-rc.2",
+          "to": "v1.0.0-rc.3",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 0,
+            "removed-field": 0,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 0
+          },
+          "builtin_total": 0,
+          "oasdiff": {},
+          "oasdiff_total": 0,
+          "examples": []
+        },
+        {
+          "from": "v1.0.0-rc.3",
+          "to": "v1.0.0-rc.4",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 0,
+            "removed-field": 0,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 0
+          },
+          "builtin_total": 0,
+          "oasdiff": {},
+          "oasdiff_total": 0,
+          "examples": []
+        },
+        {
+          "from": "v1.0.0-rc.4",
+          "to": "v1.0.0",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 0,
+            "removed-field": 0,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 0
+          },
+          "builtin_total": 0,
+          "oasdiff": {},
+          "oasdiff_total": 0,
+          "examples": []
+        },
+        {
+          "from": "v1.0.0",
+          "to": "v1.1.0",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 0,
+            "removed-field": 0,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 0
+          },
+          "builtin_total": 0,
+          "oasdiff": {},
+          "oasdiff_total": 0,
+          "examples": []
+        },
+        {
+          "from": "v1.1.0",
+          "to": "v1.1.1",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 0,
+            "removed-field": 0,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 0
+          },
+          "builtin_total": 0,
+          "oasdiff": {},
+          "oasdiff_total": 0,
+          "examples": []
+        },
+        {
+          "from": "v1.1.1",
+          "to": "v1.1.2",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 0,
+            "removed-field": 0,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 0
+          },
+          "builtin_total": 0,
+          "oasdiff": {},
+          "oasdiff_total": 0,
+          "examples": []
+        },
+        {
+          "from": "v1.1.2",
+          "to": "v1.1.3",
+          "builtin": {
+            "removed-endpoint": 0,
+            "renamed-field": 0,
+            "removed-field": 0,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 0
+          },
+          "builtin_total": 0,
+          "oasdiff": {},
+          "oasdiff_total": 0,
+          "examples": []
+        },
+        {
+          "from": "v1.1.3",
+          "to": "v1.1.4",
+          "builtin": {
+            "removed-endpoint": 7,
+            "renamed-field": 5,
+            "removed-field": 25,
+            "new-required-parameter": 13,
+            "changed-type": 18,
+            "changed-enum": 9
+          },
+          "builtin_total": 77,
+          "oasdiff": {
+            "changed-type": 133,
+            "other": 957,
+            "new-required-parameter": 13,
+            "removed-endpoint": 3,
+            "removed-field": 20,
+            "changed-enum": 45
+          },
+          "oasdiff_total": 1171,
+          "examples": [
+            "The endpoint `DELETE /applications/{client_id}/grants/{access_token}` was removed.",
+            "The endpoint `DELETE /applications/{client_id}/tokens/{access_token}` was removed.",
+            "The endpoint `GET /applications/{client_id}/tokens/{access_token}` was removed."
+          ]
+        },
+        {
+          "from": "v1.1.4",
+          "to": "v2.0.0",
+          "builtin": {
+            "removed-endpoint": 46,
+            "renamed-field": 0,
+            "removed-field": 40,
+            "new-required-parameter": 3,
+            "changed-type": 0,
+            "changed-enum": 5
+          },
+          "builtin_total": 94,
+          "oasdiff": {
+            "other": 19,
+            "removed-endpoint": 33,
+            "changed-type": 1,
+            "changed-enum": 42,
+            "new-required-parameter": 3,
+            "removed-field": 5
+          },
+          "oasdiff_total": 103,
+          "examples": [
+            "The endpoint `GET /applications/grants` was removed.",
+            "The endpoint `DELETE /applications/grants/{grant_id}` was removed.",
+            "The endpoint `GET /applications/grants/{grant_id}` was removed."
+          ]
+        },
+        {
+          "from": "v2.0.0",
+          "to": "v2.1.0",
+          "builtin": {
+            "removed-endpoint": 9,
+            "renamed-field": 0,
+            "removed-field": 2,
+            "new-required-parameter": 0,
+            "changed-type": 0,
+            "changed-enum": 0
+          },
+          "builtin_total": 11,
+          "oasdiff": {
+            "removed-endpoint": 9,
+            "other": 6
+          },
+          "oasdiff_total": 15,
+          "examples": [
+            "The endpoint `GET /organizations/{org}/codespaces/secrets` was removed.",
+            "The endpoint `GET /organizations/{org}/codespaces/secrets/public-key` was removed.",
+            "The endpoint `DELETE /organizations/{org}/codespaces/secrets/{secret_name}` was removed."
+          ]
+        }
+      ],
+      "builtin_totals": {
+        "removed-endpoint": 67,
+        "renamed-field": 7,
+        "removed-field": 74,
+        "new-required-parameter": 24,
+        "changed-type": 19,
+        "changed-enum": 14
+      },
+      "builtin_total": 205,
+      "pairs_with_breaking": 7,
+      "oasdiff_totals": {
+        "changed-enum": 87,
+        "changed-type": 136,
+        "new-required-parameter": 22,
+        "other": 994,
+        "removed-endpoint": 50,
+        "removed-field": 39
+      },
+      "oasdiff_total": 1328
+    }
+  },
+  "seconds": 347.8
+}
