@@ -1,0 +1,11 @@
+{
+  "id": "C021",
+  "title": "CreateRefund.reason removed from requests",
+  "language": "ts",
+  "client": "examples/acme/clients/ts",
+  "old_spec": "examples/acme/specs/acme-orders-v1.json",
+  "new_spec": "bench/cases/C021/new.json",
+  "expected_patch": "bench/cases/C021/expected.diff",
+  "split": "dev",
+  "license": "MIT"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "C004",
+  "title": "Customer.name renamed to full_name",
+  "language": "ts",
+  "client": "examples/acme/clients/ts",
+  "old_spec": "examples/acme/specs/acme-orders-v1.json",
+  "new_spec": "bench/cases/C004/new.json",
+  "expected_patch": "bench/cases/C004/expected.diff",
+  "split": "heldout",
+  "license": "MIT"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "C006",
+  "title": "LineItem.unit_price renamed to price",
+  "language": "ts",
+  "client": "examples/acme/clients/ts",
+  "old_spec": "examples/acme/specs/acme-orders-v1.json",
+  "new_spec": "bench/cases/C006/new.json",
+  "expected_patch": "bench/cases/C006/expected.diff",
+  "split": "dev",
+  "license": "MIT"
+}

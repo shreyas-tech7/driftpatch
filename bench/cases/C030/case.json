@@ -1,0 +1,11 @@
+{
+  "id": "C030",
+  "title": "Order status value cancelled respelled as canceled",
+  "language": "python",
+  "client": "examples/acme/clients/python",
+  "old_spec": "examples/acme/specs/acme-orders-v1.json",
+  "new_spec": "bench/cases/C030/new.json",
+  "expected_patch": "bench/cases/C030/expected.diff",
+  "split": "heldout",
+  "license": "MIT"
+}

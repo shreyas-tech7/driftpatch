@@ -1,0 +1,11 @@
+--- a/src/client.ts
++++ b/src/client.ts
+@@ -117,7 +117,7 @@
+   }
+ 
+   async createRefund(orderId: string, amount: number, reason = "damaged"): Promise<Refund> {
+-    const body = { order_id: orderId, amount: amount, reason: reason };
++    const body = { order_id: orderId, amount: String(amount), reason: reason };
+     const data = await this.request("POST", "/refunds", { body });
+     return { id: data.id, orderId: data.order_id, amount: data.amount, status: data.status };
+   }

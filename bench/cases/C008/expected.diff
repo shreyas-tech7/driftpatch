@@ -1,0 +1,11 @@
+--- a/src/client.ts
++++ b/src/client.ts
+@@ -49,7 +49,7 @@
+     total: raw.total,
+     currency: raw.currency,
+     customerEmail: raw.customer_email,
+-    createdAt: raw.created_at,
++    createdAt: raw.created,
+     note: raw.note,
+   };
+ }

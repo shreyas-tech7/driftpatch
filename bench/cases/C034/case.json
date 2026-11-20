@@ -1,0 +1,11 @@
+{
+  "id": "C034",
+  "title": "Two changes: Order.total renamed and a required currency parameter",
+  "language": "python",
+  "client": "examples/acme/clients/python",
+  "old_spec": "examples/acme/specs/acme-orders-v1.json",
+  "new_spec": "bench/cases/C034/new.json",
+  "expected_patch": "bench/cases/C034/expected.diff",
+  "split": "heldout",
+  "license": "MIT"
+}

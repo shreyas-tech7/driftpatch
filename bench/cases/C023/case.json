@@ -1,0 +1,11 @@
+{
+  "id": "C023",
+  "title": "Shipment.carrier removed from responses",
+  "language": "python",
+  "client": "examples/acme/clients/python",
+  "old_spec": "examples/acme/specs/acme-orders-v1.json",
+  "new_spec": "bench/cases/C023/new.json",
+  "expected_patch": "bench/cases/C023/expected.diff",
+  "split": "heldout",
+  "license": "MIT"
+}

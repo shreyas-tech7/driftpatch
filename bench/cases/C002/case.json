@@ -1,0 +1,11 @@
+{
+  "id": "C002",
+  "title": "Order.total renamed to total_amount",
+  "language": "ts",
+  "client": "examples/acme/clients/ts",
+  "old_spec": "examples/acme/specs/acme-orders-v1.json",
+  "new_spec": "bench/cases/C002/new.json",
+  "expected_patch": "bench/cases/C002/expected.diff",
+  "split": "dev",
+  "license": "MIT"
+}

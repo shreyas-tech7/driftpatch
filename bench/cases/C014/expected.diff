@@ -1,0 +1,11 @@
+--- a/acme_client/client.py
++++ b/acme_client/client.py
+@@ -93,7 +93,7 @@
+             raise AcmeError(err.code, err.read().decode()) from None
+ 
+     def list_orders(self, status="open", limit=10):
+-        params = {"status": status, "limit": limit}
++        params = {"status": status, "limit": limit, "currency": "USD"}
+         data = self._request("GET", "/orders", params=params)
+         return [Order.from_api(o) for o in data["orders"]]
+ 

@@ -1,0 +1,11 @@
+--- a/acme_client/client.py
++++ b/acme_client/client.py
+@@ -98,7 +98,7 @@
+         return [Order.from_api(o) for o in data["orders"]]
+ 
+     def list_cancelled_orders(self):
+-        return self.list_orders(status="cancelled")
++        return self.list_orders(status="canceled")
+ 
+     def get_order(self, order_id):
+         return Order.from_api(self._request("GET", f"/orders/{order_id}"))

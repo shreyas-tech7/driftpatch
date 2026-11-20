@@ -1,0 +1,11 @@
+--- a/src/client.ts
++++ b/src/client.ts
+@@ -108,7 +108,7 @@
+ 
+   async listItems(orderId: string): Promise<LineItem[]> {
+     const data = await this.request("GET", `/orders/${orderId}/items`);
+-    return data.items.map((i: any) => ({ sku: i.sku, quantity: i.quantity, unitPrice: i.unit_price }));
++    return data.items.map((i: any) => ({ sku: i.sku, quantity: i.quantity, unitPrice: i.price }));
+   }
+ 
+   async getCustomer(customerId: string): Promise<Customer> {

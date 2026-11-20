@@ -1,0 +1,551 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Acme Orders API",
+    "version": "2.0.0-c027",
+    "description": "An invented sample API for driftpatch. MIT licensed.",
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8080"
+    }
+  ],
+  "paths": {
+    "/orders": {
+      "get": {
+        "operationId": "listOrders",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "open",
+                "shipped",
+                "cancelled"
+              ],
+              "default": "open"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderList"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createOrder",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrder"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/{order_id}": {
+      "get": {
+        "operationId": "getOrder",
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "ord_1001"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/{order_id}/cancel": {
+      "post": {
+        "operationId": "cancelOrder",
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "ord_1001"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/{order_id}/items": {
+      "get": {
+        "operationId": "listOrderItems",
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "ord_1001"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LineItemList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/{order_id}/shipment": {
+      "get": {
+        "operationId": "getShipment",
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "ord_1001"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Shipment"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customers/{customer_id}": {
+      "get": {
+        "operationId": "getCustomer",
+        "parameters": [
+          {
+            "name": "customer_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "cus_501"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/refunds": {
+      "post": {
+        "operationId": "createRefund",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRefund"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Refund"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Order": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "status",
+          "total",
+          "currency",
+          "customer_email",
+          "created_at",
+          "note"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "ord_1001"
+          },
+          "status": {
+            "type": "string",
+            "example": "open",
+            "enum": [
+              "open",
+              "shipped",
+              "cancelled"
+            ]
+          },
+          "total": {
+            "type": "number",
+            "example": 42.5
+          },
+          "currency": {
+            "type": "string",
+            "example": "USD"
+          },
+          "customer_email": {
+            "type": "string",
+            "example": "ada@example.org"
+          },
+          "created_at": {
+            "type": "string",
+            "example": "2026-11-01T10:00:00Z"
+          },
+          "note": {
+            "type": "string",
+            "example": "leave at the door"
+          }
+        }
+      },
+      "OrderList": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "orders",
+          "next_cursor"
+        ],
+        "properties": {
+          "orders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Order"
+            }
+          },
+          "next_cursor": {
+            "type": "string",
+            "example": "cur_2"
+          }
+        }
+      },
+      "LineItemInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sku",
+          "quantity"
+        ],
+        "properties": {
+          "sku": {
+            "type": "string",
+            "example": "SKU-RED-MUG"
+          },
+          "quantity": {
+            "type": "integer",
+            "example": 2
+          }
+        }
+      },
+      "CreateOrder": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "customer_email",
+          "items"
+        ],
+        "properties": {
+          "customer_email": {
+            "type": "string",
+            "example": "ada@example.org"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LineItemInput"
+            }
+          },
+          "note": {
+            "type": "string",
+            "example": "leave at the door"
+          }
+        }
+      },
+      "CancelRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "reason"
+        ],
+        "properties": {
+          "reason": {
+            "type": "string",
+            "example": "customer_request",
+            "enum": [
+              "customer_request",
+              "fraud",
+              "out_of_stock"
+            ]
+          }
+        }
+      },
+      "LineItem": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sku",
+          "quantity",
+          "unit_price"
+        ],
+        "properties": {
+          "sku": {
+            "type": "string",
+            "example": "SKU-RED-MUG"
+          },
+          "quantity": {
+            "type": "integer",
+            "example": 2
+          },
+          "unit_price": {
+            "type": "number",
+            "example": 21.25
+          }
+        }
+      },
+      "LineItemList": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "items"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LineItem"
+            }
+          }
+        }
+      },
+      "Shipment": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "carrier",
+          "tracking_number",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "shp_77"
+          },
+          "carrier": {
+            "type": "string",
+            "example": "ups"
+          },
+          "tracking_number": {
+            "type": "string",
+            "example": "1Z999AA10123456784"
+          },
+          "status": {
+            "type": "string",
+            "example": "in_transit",
+            "enum": [
+              "label_created",
+              "in_transit",
+              "delivered"
+            ]
+          }
+        }
+      },
+      "Customer": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "email",
+          "name",
+          "tier"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "cus_501"
+          },
+          "email": {
+            "type": "string",
+            "example": "ada@example.org"
+          },
+          "name": {
+            "type": "string",
+            "example": "Ada Lovelace"
+          },
+          "tier": {
+            "type": "string",
+            "example": "gold",
+            "enum": [
+              "standard",
+              "gold"
+            ]
+          }
+        }
+      },
+      "CreateRefund": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "order_id",
+          "amount"
+        ],
+        "properties": {
+          "order_id": {
+            "type": "string",
+            "example": "ord_1001"
+          },
+          "amount": {
+            "type": "string",
+            "example": "10.00"
+          },
+          "reason": {
+            "type": "string",
+            "example": "damaged"
+          }
+        }
+      },
+      "Refund": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "order_id",
+          "amount",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "re_9"
+          },
+          "order_id": {
+            "type": "string",
+            "example": "ord_1001"
+          },
+          "amount": {
+            "type": "number",
+            "example": 10.0
+          },
+          "status": {
+            "type": "string",
+            "example": "pending",
+            "enum": [
+              "pending",
+              "succeeded"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

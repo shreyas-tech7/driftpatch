@@ -1,0 +1,11 @@
+--- a/acme_client/client.py
++++ b/acme_client/client.py
+@@ -92,7 +92,7 @@
+         except urllib.error.HTTPError as err:
+             raise AcmeError(err.code, err.read().decode()) from None
+ 
+-    def list_orders(self, status="open", limit=10):
++    def list_orders(self, status="active", limit=10):
+         params = {"status": status, "limit": limit}
+         data = self._request("GET", "/orders", params=params)
+         return [Order.from_api(o) for o in data["orders"]]

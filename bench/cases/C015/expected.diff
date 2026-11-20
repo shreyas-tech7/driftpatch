@@ -1,0 +1,11 @@
+--- a/src/client.ts
++++ b/src/client.ts
+@@ -79,7 +79,7 @@
+   }
+ 
+   async listOrders(status = "open", limit = 10): Promise<Order[]> {
+-    const query = { status: status, limit: String(limit) };
++    const query = { status: status, limit: String(limit), currency: "USD" };
+     const data = await this.request("GET", "/orders", { query });
+     return data.orders.map(toOrder);
+   }

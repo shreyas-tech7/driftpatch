@@ -1,0 +1,11 @@
+--- a/src/client.ts
++++ b/src/client.ts
+@@ -113,7 +113,7 @@
+ 
+   async getCustomer(customerId: string): Promise<Customer> {
+     const data = await this.request("GET", `/customers/${customerId}`);
+-    return { id: data.id, email: data.email, name: data.name, tier: data.tier };
++    return { id: data.id, email: data.email, name: data.full_name, tier: data.tier };
+   }
+ 
+   async createRefund(orderId: string, amount: number, reason = "damaged"): Promise<Refund> {

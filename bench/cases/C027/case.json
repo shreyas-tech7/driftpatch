@@ -1,0 +1,11 @@
+{
+  "id": "C027",
+  "title": "CreateRefund.amount changed from number to string",
+  "language": "ts",
+  "client": "examples/acme/clients/ts",
+  "old_spec": "examples/acme/specs/acme-orders-v1.json",
+  "new_spec": "bench/cases/C027/new.json",
+  "expected_patch": "bench/cases/C027/expected.diff",
+  "split": "dev",
+  "license": "MIT"
+}

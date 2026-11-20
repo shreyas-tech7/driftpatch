@@ -1,0 +1,11 @@
+--- a/acme_client/client.py
++++ b/acme_client/client.py
+@@ -106,7 +106,7 @@
+     def create_order(self, customer_email, items, note=""):
+         body = {
+             "customer_email": customer_email,
+-            "items": [{"sku": sku, "quantity": quantity} for sku, quantity in items],
++            "items": [{"sku": sku, "quantity": str(quantity)} for sku, quantity in items],
+             "note": note,
+         }
+         return Order.from_api(self._request("POST", "/orders", body=body))

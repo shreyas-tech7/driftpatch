@@ -1,0 +1,11 @@
+{
+  "id": "C019",
+  "title": "GET /orders needs an api_version query parameter (no default)",
+  "language": "ts",
+  "client": "examples/acme/clients/ts",
+  "old_spec": "examples/acme/specs/acme-orders-v1.json",
+  "new_spec": "bench/cases/C019/new.json",
+  "expected_patch": "bench/cases/C019/expected.diff",
+  "split": "heldout",
+  "license": "MIT"
+}

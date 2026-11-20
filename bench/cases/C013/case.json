@@ -1,0 +1,11 @@
+{
+  "id": "C013",
+  "title": "LineItemInput.quantity renamed to qty",
+  "language": "python",
+  "client": "examples/acme/clients/python",
+  "old_spec": "examples/acme/specs/acme-orders-v1.json",
+  "new_spec": "bench/cases/C013/new.json",
+  "expected_patch": "bench/cases/C013/expected.diff",
+  "split": "dev",
+  "license": "MIT"
+}

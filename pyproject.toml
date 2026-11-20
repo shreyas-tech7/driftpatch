@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "driftpatch"
+version = "0.1.0rc1"
+description = "Find the client code an OpenAPI spec change breaks, write a patch, and prove the patch works before a human sees it."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Shreyas" }]
+requires-python = ">=3.11"
+dependencies = []
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Development Status :: 3 - Alpha",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[project.scripts]
+driftpatch = "driftpatch.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+pythonpath = ["tests"]
+
+[tool.ruff]
+line-length = 140
+target-version = "py311"
+extend-exclude = ["examples/acme/clients"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+# The formatter sets line length. Long string literals are left alone.
+ignore = ["E501"]

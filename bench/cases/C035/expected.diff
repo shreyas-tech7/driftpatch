@@ -1,0 +1,13 @@
+--- a/src/client.ts
++++ b/src/client.ts
+@@ -91,8 +91,8 @@
+   async createOrder(customerEmail: string, items: [string, number][], note = ""): Promise<Order> {
+     const body = {
+       customer_email: customerEmail,
+-      items: items.map(([sku, quantity]) => ({ sku: sku, quantity: quantity })),
+-      note: note,
++      items: items.map(([sku, quantity]) => ({ sku: sku, quantity: String(quantity) })),
++      comment: note,
+     };
+     return toOrder(await this.request("POST", "/orders", { body }));
+   }

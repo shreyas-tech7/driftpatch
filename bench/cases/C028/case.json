@@ -1,0 +1,11 @@
+{
+  "id": "C028",
+  "title": "Order status value open renamed to active",
+  "language": "python",
+  "client": "examples/acme/clients/python",
+  "old_spec": "examples/acme/specs/acme-orders-v1.json",
+  "new_spec": "bench/cases/C028/new.json",
+  "expected_patch": "bench/cases/C028/expected.diff",
+  "split": "dev",
+  "license": "MIT"
+}

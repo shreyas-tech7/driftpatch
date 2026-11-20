@@ -1,0 +1,11 @@
+--- a/src/client.ts
++++ b/src/client.ts
+@@ -103,7 +103,7 @@
+   }
+ 
+   async cancelForFraud(orderId: string): Promise<Order> {
+-    return this.cancelOrder(orderId, "fraud");
++    return this.cancelOrder(orderId, "suspected_fraud");
+   }
+ 
+   async listItems(orderId: string): Promise<LineItem[]> {

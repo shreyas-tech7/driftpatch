@@ -1,0 +1,11 @@
+--- a/src/client.ts
++++ b/src/client.ts
+@@ -98,7 +98,7 @@
+   }
+ 
+   async cancelOrder(orderId: string, reason = "customer_request"): Promise<Order> {
+-    const body = { reason: reason };
++    const body = { cancel_reason: reason };
+     return toOrder(await this.request("POST", `/orders/${orderId}/cancel`, { body }));
+   }
+ 

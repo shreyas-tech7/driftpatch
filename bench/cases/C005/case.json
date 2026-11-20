@@ -1,0 +1,11 @@
+{
+  "id": "C005",
+  "title": "Shipment.tracking_number renamed to tracking_code",
+  "language": "python",
+  "client": "examples/acme/clients/python",
+  "old_spec": "examples/acme/specs/acme-orders-v1.json",
+  "new_spec": "bench/cases/C005/new.json",
+  "expected_patch": "bench/cases/C005/expected.diff",
+  "split": "heldout",
+  "license": "MIT"
+}

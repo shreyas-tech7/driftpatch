@@ -1,0 +1,11 @@
+{
+  "id": "C033",
+  "title": "GET /customers/{customer_id} moved to /accounts/{customer_id}",
+  "language": "python",
+  "client": "examples/acme/clients/python",
+  "old_spec": "examples/acme/specs/acme-orders-v1.json",
+  "new_spec": "bench/cases/C033/new.json",
+  "expected_patch": "bench/cases/C033/expected.diff",
+  "split": "dev",
+  "license": "MIT"
+}

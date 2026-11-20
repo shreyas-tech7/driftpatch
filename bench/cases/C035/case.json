@@ -1,0 +1,11 @@
+{
+  "id": "C035",
+  "title": "Two changes: CreateOrder.note renamed and quantity changed to string",
+  "language": "ts",
+  "client": "examples/acme/clients/ts",
+  "old_spec": "examples/acme/specs/acme-orders-v1.json",
+  "new_spec": "bench/cases/C035/new.json",
+  "expected_patch": "bench/cases/C035/expected.diff",
+  "split": "dev",
+  "license": "MIT"
+}

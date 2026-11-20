@@ -1,0 +1,11 @@
+--- a/src/client.ts
++++ b/src/client.ts
+@@ -46,7 +46,7 @@
+   return {
+     id: raw.id,
+     status: raw.status,
+-    total: raw.total,
++    total: raw.total_amount,
+     currency: raw.currency,
+     customerEmail: raw.customer_email,
+     createdAt: raw.created_at,

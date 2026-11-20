@@ -1,0 +1,10 @@
+--- a/acme_client/client.py
++++ b/acme_client/client.py
+@@ -107,7 +107,6 @@
+         body = {
+             "customer_email": customer_email,
+             "items": [{"sku": sku, "quantity": quantity} for sku, quantity in items],
+-            "note": note,
+         }
+         return Order.from_api(self._request("POST", "/orders", body=body))
+ 

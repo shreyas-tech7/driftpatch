@@ -1,0 +1,11 @@
+{
+  "name": "acme-client-ts",
+  "version": "1.0.0",
+  "description": "Sample TypeScript client for the invented Acme Orders API. Used by the driftpatch benchmark.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/"
+  }
+}

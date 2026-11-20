@@ -1,0 +1,11 @@
+{
+  "id": "C024",
+  "title": "LineItemInput.quantity changed from integer to string",
+  "language": "python",
+  "client": "examples/acme/clients/python",
+  "old_spec": "examples/acme/specs/acme-orders-v1.json",
+  "new_spec": "bench/cases/C024/new.json",
+  "expected_patch": "bench/cases/C024/expected.diff",
+  "split": "dev",
+  "license": "MIT"
+}

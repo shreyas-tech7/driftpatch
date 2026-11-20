@@ -1,0 +1,11 @@
+--- a/acme_client/client.py
++++ b/acme_client/client.py
+@@ -113,7 +113,7 @@
+ 
+     def cancel_order(self, order_id, reason="customer_request"):
+         body = {"reason": reason}
+-        return Order.from_api(self._request("POST", f"/orders/{order_id}/cancel", body=body))
++        return Order.from_api(self._request("POST", f"/orders/{order_id}/cancellation", body=body))
+ 
+     def list_items(self, order_id):
+         data = self._request("GET", f"/orders/{order_id}/items")

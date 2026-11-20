@@ -1,0 +1,11 @@
+{
+  "id": "C003",
+  "title": "Order.customer_email renamed to email in responses",
+  "language": "python",
+  "client": "examples/acme/clients/python",
+  "old_spec": "examples/acme/specs/acme-orders-v1.json",
+  "new_spec": "bench/cases/C003/new.json",
+  "expected_patch": "bench/cases/C003/expected.diff",
+  "split": "dev",
+  "license": "MIT"
+}

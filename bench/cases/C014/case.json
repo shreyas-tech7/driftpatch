@@ -1,0 +1,11 @@
+{
+  "id": "C014",
+  "title": "GET /orders needs a currency query parameter (default USD)",
+  "language": "python",
+  "client": "examples/acme/clients/python",
+  "old_spec": "examples/acme/specs/acme-orders-v1.json",
+  "new_spec": "bench/cases/C014/new.json",
+  "expected_patch": "bench/cases/C014/expected.diff",
+  "split": "heldout",
+  "license": "MIT"
+}

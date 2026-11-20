@@ -1,0 +1,11 @@
+{
+  "id": "C036",
+  "title": "Two changes: cancel endpoint moved and Order.note removed",
+  "language": "python",
+  "client": "examples/acme/clients/python",
+  "old_spec": "examples/acme/specs/acme-orders-v1.json",
+  "new_spec": "bench/cases/C036/new.json",
+  "expected_patch": "bench/cases/C036/expected.diff",
+  "split": "heldout",
+  "license": "MIT"
+}

@@ -1,0 +1,11 @@
+--- a/acme_client/client.py
++++ b/acme_client/client.py
+@@ -38,7 +38,7 @@
+             status=data["status"],
+             total=data["total"],
+             currency=data["currency"],
+-            customer_email=data["customer_email"],
++            customer_email=data["email"],
+             created_at=data["created_at"],
+             note=data["note"],
+         )

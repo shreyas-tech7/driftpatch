@@ -1,0 +1,11 @@
+--- a/acme_client/client.py
++++ b/acme_client/client.py
+@@ -105,7 +105,7 @@
+ 
+     def create_order(self, customer_email, items, note=""):
+         body = {
+-            "customer_email": customer_email,
++            "email": customer_email,
+             "items": [{"sku": sku, "quantity": quantity} for sku, quantity in items],
+             "note": note,
+         }

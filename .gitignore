@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+logs/
+graphify-out/
+/build/
+dist/
+/out/
+.env
+data/census-cache/
+node_modules/
+.driftpatch-junit.xml

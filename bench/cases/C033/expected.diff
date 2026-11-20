@@ -1,0 +1,11 @@
+--- a/acme_client/client.py
++++ b/acme_client/client.py
+@@ -129,7 +129,7 @@
+         )
+ 
+     def get_customer(self, customer_id):
+-        data = self._request("GET", f"/customers/{customer_id}")
++        data = self._request("GET", f"/accounts/{customer_id}")
+         return Customer(id=data["id"], email=data["email"], name=data["name"], tier=data["tier"])
+ 
+     def create_refund(self, order_id, amount, reason="damaged"):

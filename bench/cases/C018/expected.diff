@@ -1,0 +1,11 @@
+--- a/acme_client/client.py
++++ b/acme_client/client.py
+@@ -120,7 +120,7 @@
+         return [LineItem(sku=i["sku"], quantity=i["quantity"], unit_price=i["unit_price"]) for i in data["items"]]
+ 
+     def get_shipment(self, order_id):
+-        data = self._request("GET", f"/orders/{order_id}/shipment")
++        data = self._request("GET", f"/orders/{order_id}/shipment", params={"region": "us"})
+         return Shipment(
+             id=data["id"],
+             carrier=data["carrier"],

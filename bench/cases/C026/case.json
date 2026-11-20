@@ -1,0 +1,11 @@
+{
+  "id": "C026",
+  "title": "Order.total changed from number to string",
+  "language": "python",
+  "client": "examples/acme/clients/python",
+  "old_spec": "examples/acme/specs/acme-orders-v1.json",
+  "new_spec": "bench/cases/C026/new.json",
+  "expected_patch": "bench/cases/C026/expected.diff",
+  "split": "dev",
+  "license": "MIT"
+}

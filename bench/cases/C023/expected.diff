@@ -1,0 +1,11 @@
+--- a/acme_client/client.py
++++ b/acme_client/client.py
+@@ -123,7 +123,7 @@
+         data = self._request("GET", f"/orders/{order_id}/shipment")
+         return Shipment(
+             id=data["id"],
+-            carrier=data["carrier"],
++            carrier=data.get("carrier"),
+             tracking_number=data["tracking_number"],
+             status=data["status"],
+         )

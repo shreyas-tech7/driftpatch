@@ -1,0 +1,204 @@
+[
+  {
+    "id": "F01",
+    "area": "init",
+    "description": "init.sh creates .venv, installs driftpatch with dev tools, lints and runs every test offline",
+    "steps": [
+      "./init.sh"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F02",
+    "area": "sample",
+    "description": "Acme Orders spec v1 and v2, a Python client and a TypeScript client whose own tests pass against a mock of v1",
+    "steps": [
+      ".venv/bin/python -m pytest tests/test_sample_clients.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F03",
+    "area": "differ",
+    "description": "The built-in differ finds removed endpoints, renamed fields, removed fields, new required parameters, changed types and changed enums",
+    "steps": [
+      ".venv/bin/python -m pytest tests/test_differ.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F04",
+    "area": "differ",
+    "description": "The oasdiff adapter runs oasdiff when installed (external refs off), maps its ids to kinds, and the tool runs without it",
+    "steps": [
+      ".venv/bin/python -m pytest tests/test_oasdiff.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F05",
+    "area": "finder",
+    "description": "The Python call-site finder (ast) scopes each change to the functions that call the affected endpoint",
+    "steps": [
+      ".venv/bin/python -m pytest tests/test_finder.py -k python"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F06",
+    "area": "finder",
+    "description": "The TypeScript call-site finder (patterns and a brace scanner), marked weaker in the README",
+    "steps": [
+      ".venv/bin/python -m pytest tests/test_finder.py -k ts"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F07",
+    "area": "mock",
+    "description": "A mock server built from a spec on 127.0.0.1 that validates requests and answers with examples",
+    "steps": [
+      ".venv/bin/python -m pytest tests/test_mock_server.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F08",
+    "area": "verifier",
+    "description": "The verifier runs the client tests before and after a patch in a temp copy with timeouts and applies the pass rule",
+    "steps": [
+      ".venv/bin/python -m pytest tests/test_verifier.py tests/test_patch.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F09",
+    "area": "proposer",
+    "description": "The rule-based proposer handles renames, new required parameters with a default and removed fields, and declines the rest",
+    "steps": [
+      ".venv/bin/python -m pytest tests/test_rule_proposer.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F10",
+    "area": "pipeline",
+    "description": "The pipeline is an explicit state machine (diff, find, propose, verify, report) and every transition is tested",
+    "steps": [
+      ".venv/bin/python -m pytest tests/test_pipeline.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F11",
+    "area": "bench",
+    "description": "A frozen suite of 30 to 40 cases with known correct patches, a SHA-256 manifest test and a 25 dev / rest held-out split",
+    "steps": [
+      ".venv/bin/python -m pytest tests/test_bench_suite.py",
+      ".venv/bin/python scripts/make_cases.py --check"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F12",
+    "area": "bench",
+    "description": "The benchmark runs end to end in under 10 minutes on 2 cores with the rule-based proposer",
+    "steps": [
+      "taskset -c 0,1 .venv/bin/python scripts/time_bench.py --limit 600"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F13",
+    "area": "safety",
+    "description": "A test proves the tool never runs git push and connects only to the local mock server or the configured model endpoint, and the guard blocks planted bad calls",
+    "steps": [
+      ".venv/bin/python -m pytest tests/test_guard.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F14",
+    "area": "llm",
+    "description": "The pluggable LLM proposer works in replay mode from recorded fixtures and refuses unsafe answers",
+    "steps": [
+      ".venv/bin/python -m pytest tests/test_llm.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F15",
+    "area": "llm",
+    "description": "One record-mode run of the LLM proposer on a free provider over the suite, with token counts",
+    "steps": [
+      ".venv/bin/driftpatch bench --proposer llm --llm-mode replay"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F16",
+    "area": "census",
+    "description": "The census counts breaking changes by kind across the Stripe and GitHub spec histories and documents the method",
+    "steps": [
+      ".venv/bin/python -m pytest tests/test_census.py",
+      "test -f docs/CENSUS.md && test -f results/census.json"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F17",
+    "area": "outputs",
+    "description": "run writes a unified diff, a plain-English PR text and a verification report, and never pushes or opens a PR",
+    "steps": [
+      ".venv/bin/python -m pytest tests/test_report.py tests/test_cli.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F18",
+    "area": "readme",
+    "description": "README tables (pass rate, regressions, patch size, tokens per proposer, 95% intervals) are written from results files and a test checks them",
+    "steps": [
+      ".venv/bin/driftpatch readme --check",
+      ".venv/bin/python -m pytest tests/test_readme_sync.py"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F19",
+    "area": "quality",
+    "description": "Quality bar: README parts in order, LICENSE, CHANGELOG, CONTRIBUTING, issue templates, CI with badge, topics, social preview, static demo page and DEMO.md",
+    "steps": [
+      ".venv/bin/python -m pytest tests/test_repo_quality.py",
+      ".venv/bin/python scripts/check_links.py"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F20",
+    "area": "study",
+    "description": "Study-later kit: WALKTHROUGH, INTERVIEW_QA with the four interview points, DECISIONS",
+    "steps": [
+      ".venv/bin/python -m pytest tests/test_repo_quality.py -k study"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F21",
+    "area": "release",
+    "description": "Release check done: code review, security audit, gitleaks, pip-audit, ruff S, actionlint, link check, humanizer pass, outside check",
+    "steps": [
+      "test -f docs/RELEASE_CHECK.md"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F22",
+    "area": "handoff",
+    "description": "Hand-off: CHANGELOG v0.1.0-rc1 with the release SHA, HUMAN_STEPS, COWORK_PROMPT, GITHUB_ABOUT and topics",
+    "steps": [
+      ".venv/bin/python -m pytest tests/test_repo_quality.py -k handoff"
+    ],
+    "passes": false
+  }
+]

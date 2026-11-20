@@ -1,0 +1,8 @@
+--- a/acme_client/client.py
++++ b/acme_client/client.py
+@@ -135,4 +135,4 @@
+     def create_refund(self, order_id, amount, reason="damaged"):
+         body = {"order_id": order_id, "amount": amount, "reason": reason}
+         data = self._request("POST", "/refunds", body=body)
+-        return Refund(id=data["id"], order_id=data["order_id"], amount=data["amount"], status=data["status"])
++        return Refund(id=data["id"], order_id=data["order_id"], amount=data["amount"], status=data["state"])

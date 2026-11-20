@@ -1,0 +1,11 @@
+{
+  "id": "C009",
+  "title": "CreateOrder.customer_email renamed to email in requests",
+  "language": "python",
+  "client": "examples/acme/clients/python",
+  "old_spec": "examples/acme/specs/acme-orders-v1.json",
+  "new_spec": "bench/cases/C009/new.json",
+  "expected_patch": "bench/cases/C009/expected.diff",
+  "split": "dev",
+  "license": "MIT"
+}

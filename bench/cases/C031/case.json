@@ -1,0 +1,11 @@
+{
+  "id": "C031",
+  "title": "POST /orders/{order_id}/cancel moved to /orders/{order_id}/cancellation",
+  "language": "python",
+  "client": "examples/acme/clients/python",
+  "old_spec": "examples/acme/specs/acme-orders-v1.json",
+  "new_spec": "bench/cases/C031/new.json",
+  "expected_patch": "bench/cases/C031/expected.diff",
+  "split": "dev",
+  "license": "MIT"
+}
