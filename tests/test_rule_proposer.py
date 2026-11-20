@@ -1,6 +1,6 @@
 """The rule-based baseline."""
 
-from conftest import PY_CLIENT, ROOT, TS_CLIENT, V1, case
+from conftest import PY_CLIENT, ROOT, TS_CLIENT, V1, V2, case
 
 from driftpatch.differ import diff_specs
 from driftpatch.finder import find_sites
@@ -90,3 +90,25 @@ def test_never_touches_client_files_on_disk():
     propose("C001")
     propose("C002")
     assert before == ((PY_CLIENT / "acme_client/client.py").read_text(), (TS_CLIENT / "src/client.ts").read_text())
+
+
+def test_non_ascii_text_before_the_site_does_not_shift_the_edit(tmp_path):
+    """ast columns count UTF-8 bytes. A splice by character index would land in the wrong place."""
+    import shutil
+
+    from driftpatch.differ import diff_specs
+    from driftpatch.finder import find_sites
+    from driftpatch.proposer_rule import RuleProposer
+    from driftpatch.spec import load_spec
+
+    client = tmp_path / "py"
+    shutil.copytree(PY_CLIENT, client)
+    path = client / "acme_client/client.py"
+    text = path.read_text()
+    marker = 'total=data["total"],'
+    assert marker in text
+    path.write_text(text.replace(marker, 'total=("café", data["total"])[1],'))
+    changes = diff_specs(load_spec(V1), load_spec(V2))
+    proposal = RuleProposer().propose(client, changes, find_sites(client, changes, "python"), "python")
+    new = proposal.files["acme_client/client.py"]
+    assert '("café", data["total_amount"])[1]' in new

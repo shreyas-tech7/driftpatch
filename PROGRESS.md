@@ -24,6 +24,13 @@
 - Features passing: F01 to F14, F16 to F20. F15 blocked (BLOCKERS.md).
 - Release check started: gitleaks history clean, pip-audit clean, ruff S reviewed, actionlint clean, links clean. Outside check running.
 
+## 2026-11-20, release
+
+- Outside check findings fixed or documented, each listed in `docs/RELEASE_CHECK.md`.
+- Guard widened to more process and network calls, and turned on for every command except `census`. Four new guard tests failed on the old guard and pass now. They run from an empty temp folder, because one planted push really ran from the repo during that proof (it failed, origin unchanged).
+- Census rerun after the path parameter fix. Benches rerun on 2 cores. README, site, social preview and demo regenerated.
+- Release check complete (F21). Hand-off files complete (F22). F15 stays blocked.
+
 ## Next (old list, kept for the record)
 
 1. census.py and a real census run (F16).

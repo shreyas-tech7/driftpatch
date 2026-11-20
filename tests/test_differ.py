@@ -163,3 +163,20 @@ def test_form_request_body_is_compared():
 
     changes = diff_specs(spec(["amount"]), spec(["amount", "currency"]))
     assert [(c.kind, c.field) for c in changes] == [("new-required-parameter", "currency")]
+
+
+def test_renamed_path_parameter_is_not_a_new_required_parameter():
+    def spec(name):
+        return {
+            "openapi": "3.0.0",
+            "paths": {
+                f"/orders/{{{name}}}": {
+                    "get": {
+                        "parameters": [{"name": name, "in": "path", "required": True, "schema": {"type": "string"}}],
+                        "responses": {"200": {"description": "ok"}},
+                    }
+                }
+            },
+        }
+
+    assert diff_specs(spec("order_id"), spec("id")) == []

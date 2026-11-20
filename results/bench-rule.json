@@ -10,7 +10,7 @@
     "cores_available": 2,
     "python": "3.13.18",
     "frozen_files_checked": 117,
-    "seconds": 59.01
+    "seconds": 58.05
   },
   "summary": {
     "all": {
@@ -128,7 +128,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.459
+      "seconds": 1.425
     },
     {
       "id": "C002",
@@ -148,7 +148,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.416
+      "seconds": 1.352
     },
     {
       "id": "C003",
@@ -168,7 +168,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.403
+      "seconds": 1.442
     },
     {
       "id": "C004",
@@ -188,7 +188,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.403
+      "seconds": 1.389
     },
     {
       "id": "C005",
@@ -208,7 +208,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.391
+      "seconds": 1.42
     },
     {
       "id": "C006",
@@ -228,7 +228,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.324
+      "seconds": 1.339
     },
     {
       "id": "C007",
@@ -248,7 +248,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.36
+      "seconds": 1.388
     },
     {
       "id": "C008",
@@ -268,7 +268,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.383
+      "seconds": 1.387
     },
     {
       "id": "C009",
@@ -288,7 +288,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.416
+      "seconds": 1.393
     },
     {
       "id": "C010",
@@ -308,7 +308,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.376
+      "seconds": 1.355
     },
     {
       "id": "C011",
@@ -328,7 +328,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.406
+      "seconds": 1.377
     },
     {
       "id": "C012",
@@ -348,7 +348,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.362
+      "seconds": 1.333
     },
     {
       "id": "C013",
@@ -368,7 +368,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.448
+      "seconds": 1.415
     },
     {
       "id": "C014",
@@ -388,7 +388,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.427
+      "seconds": 1.41
     },
     {
       "id": "C015",
@@ -408,7 +408,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.341
+      "seconds": 1.401
     },
     {
       "id": "C016",
@@ -428,7 +428,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.447
+      "seconds": 1.363
     },
     {
       "id": "C017",
@@ -448,7 +448,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.411
+      "seconds": 1.353
     },
     {
       "id": "C018",
@@ -512,7 +512,7 @@
       "patch_lines": 1,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.388
+      "seconds": 1.363
     },
     {
       "id": "C021",
@@ -532,7 +532,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.379
+      "seconds": 1.337
     },
     {
       "id": "C022",
@@ -552,7 +552,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.462
+      "seconds": 1.39
     },
     {
       "id": "C023",
@@ -572,7 +572,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.393
+      "seconds": 1.345
     },
     {
       "id": "C024",
@@ -815,7 +815,7 @@
       "patch_lines": 4,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.417
+      "seconds": 1.367
     },
     {
       "id": "C035",
@@ -838,7 +838,7 @@
       "declined": [
         "the rule baseline does not handle changed-type"
       ],
-      "seconds": 1.41
+      "seconds": 1.341
     },
     {
       "id": "C036",
@@ -861,7 +861,7 @@
       "declined": [
         "the rule baseline does not handle removed-endpoint"
       ],
-      "seconds": 1.437
+      "seconds": 1.409
     }
   ]
 }

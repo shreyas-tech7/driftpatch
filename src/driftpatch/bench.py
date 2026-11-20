@@ -17,7 +17,7 @@ from pathlib import Path
 
 from .patch import diff_size
 from .pipeline import Run
-from .proposer_llm import LLMProposer, ReplayMissing
+from .proposer_llm import LLMProposer, RecordError, ReplayMissing
 from .proposer_oracle import OracleProposer
 from .proposer_rule import RuleProposer
 
@@ -101,7 +101,7 @@ def run_case(case, root, proposer_name, llm_mode="replay", timeout=120):
     error = ""
     try:
         run.run()
-    except ReplayMissing as err:
+    except (ReplayMissing, RecordError) as err:
         error = f"not run: {err}"
     v = run.verification
     p = run.proposal

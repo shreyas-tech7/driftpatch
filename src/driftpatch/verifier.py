@@ -68,7 +68,13 @@ def _parse_junit(xml_path: Path) -> dict:
         return results
     root = ET.parse(xml_path).getroot()  # noqa: S314 (JUnit XML from the test run we started. The client code already runs as the user)
     for case in root.iter("testcase"):
-        name = f"{case.get('classname', '')}::{case.get('name', '')}".strip(":")
+        where = case.get("file") or case.get("classname", "")
+        name = f"{where}::{case.get('name', '')}".strip(":")
+        if name in results:  # same name twice (Node gives every test the same classname): keep both
+            n = 2
+            while f"{name}#{n}" in results:
+                n += 1
+            name = f"{name}#{n}"
         bad = any(child.tag in ("failure", "error") for child in case) or case.get("failure")
         skipped = any(child.tag == "skipped" for child in case)
         if skipped:
@@ -81,8 +87,35 @@ def run_tests(client_dir, base_url, language=None, timeout=DEFAULT_TIMEOUT) -> T
     """Run the client's tests against base_url. client_dir must already be a temp copy."""
     client_dir = Path(client_dir)
     language = language or detect_language(client_dir)
-    report = client_dir / ".driftpatch-junit.xml"
-    env = {k: v for k, v in os.environ.items() if not k.endswith(("_API_KEY", "_TOKEN", "_SECRET"))}
+    # The report lives outside the folder the tests can write to, so code under test cannot plant one.
+    report_dir = Path(tempfile.mkdtemp(prefix="driftpatch-junit-"))
+    try:
+        return _run(client_dir, base_url, language, timeout, report_dir / "junit.xml")
+    finally:
+        shutil.rmtree(report_dir, ignore_errors=True)
+
+
+# Only these variables reach the client's tests, so no key or token in the caller's environment leaks in.
+ENV_ALLOW = (
+    "PATH",
+    "HOME",
+    "USER",
+    "LOGNAME",
+    "LANG",
+    "LC_ALL",
+    "LC_CTYPE",
+    "TMPDIR",
+    "TEMP",
+    "TMP",
+    "TZ",
+    "TERM",
+    "SYSTEMROOT",
+    "COMSPEC",
+)
+
+
+def _run(client_dir, base_url, language, timeout, report) -> TestRun:
+    env = {k: os.environ[k] for k in ENV_ALLOW if k in os.environ}
     env.update(ACME_BASE_URL=base_url, DRIFTPATCH_BASE_URL=base_url, PYTHONDONTWRITEBYTECODE="1", NO_COLOR="1")
     if language == "python":
         cmd = [sys.executable, "-m", "pytest", "-q", "-p", "no:cacheprovider", "-o", "addopts=", f"--junitxml={report}"]
@@ -175,6 +208,8 @@ def verify(spec: dict, client_dir, diff_text: str, timeout=DEFAULT_TIMEOUT, befo
         reasons.append(f"baseline run: {before.error}")
     if after.error:
         reasons.append(f"patched run: {after.error}")
+    elif after.returncode != 0:
+        reasons.append(f"the patched test run exited with code {after.returncode}")
     fixed = sorted(n for n in before.failed if after.results.get(n) is True)
     regressions = sorted(n for n in before.passed if after.results.get(n) is not True)
     still_failing = sorted(n for n in before.failed if after.results.get(n) is not True)

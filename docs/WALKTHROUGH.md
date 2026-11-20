@@ -36,7 +36,7 @@ A tour of every file, in the order that makes the code easiest to learn. Read it
 - `src/driftpatch/proposer_oracle.py`: replays a case's answer key. A sanity check, not a proposer.
 - `src/driftpatch/proposer_llm.py`: builds the prompt, calls an OpenAI-compatible endpoint in record mode, replays saved answers in replay mode and refuses unsafe answers.
 - `src/driftpatch/pipeline.py`: the state machine that ties the stages together. `TRANSITIONS` lists every allowed move.
-- `src/driftpatch/guard.py`: the audit hook that blocks `git push` and outside connections during a run.
+- `src/driftpatch/guard.py`: the audit hook that blocks any git push and outside connections or lookups. Every command but `census` runs under it.
 - `src/driftpatch/report.py`: writes `patch.diff`, `PR.md`, `verification.md` and `verification.json`.
 - `src/driftpatch/cli.py`: the `driftpatch` command and its subcommands.
 

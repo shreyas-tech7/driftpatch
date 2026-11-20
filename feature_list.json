@@ -191,7 +191,7 @@
     "steps": [
       "test -f docs/RELEASE_CHECK.md"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F22",
@@ -200,6 +200,6 @@
     "steps": [
       ".venv/bin/python -m pytest tests/test_repo_quality.py -k handoff"
     ],
-    "passes": false
+    "passes": true
   }
 ]

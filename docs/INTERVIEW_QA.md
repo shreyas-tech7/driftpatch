@@ -44,7 +44,7 @@ With a few dozen cases a pass rate alone overstates what we know. `wilson` in `s
 
 ## How do you know the tool never pushes or calls out?
 
-`src/driftpatch/guard.py` installs a Python audit hook. It sees every `subprocess.Popen` and every `socket.connect`, blocks `git push` in any form, and blocks any connection that is not loopback or the configured model host. `driftpatch run` turns it on by itself. `tests/test_guard.py` runs the whole pipeline under it, then plants a `git push` and a remote connect and checks both are blocked. That test was seen to fail when the push check was broken on purpose.
+`src/driftpatch/guard.py` installs a Python audit hook. It sees every process launch (`subprocess`, `os.system`, `os.exec*`, `os.spawn*`, `os.posix_spawn*`) and every socket connect, send and name lookup in the driftpatch process. It blocks any git command that mentions push, which also catches an alias like `git -c alias.p=push p`, and any connection or lookup that is not loopback or the configured model host. `main` in `src/driftpatch/cli.py` turns it on for every command except `census`, the one command that goes online. `tests/test_guard.py` runs the whole pipeline under it, then plants pushes and remote connects and checks they are blocked. Those tests were seen to fail on the older, narrower guard. The limit: the hook sees only this process. The client's own tests run as child processes, so a client you do not trust belongs in a sandbox.
 
 ## How does the mock server work?
 

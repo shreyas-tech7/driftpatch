@@ -54,7 +54,16 @@ def test_run_turns_the_guard_on_by_itself(tmp_path, monkeypatch):
     assert seen["allowed"] == set()  # rule proposer: no endpoint is allowed
 
 
-def test_planted_git_push_is_blocked():
+@pytest.fixture
+def no_repo(tmp_path, monkeypatch):
+    """Run planted pushes from an empty folder outside any repo, so a broken guard still cannot push anything."""
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setenv("GIT_CEILING_DIRECTORIES", str(tmp_path.parent))
+    monkeypatch.delenv("GIT_DIR", raising=False)
+    return tmp_path
+
+
+def test_planted_git_push_is_blocked(no_repo):
     """Broken case: a planted `git push` call. The guard must stop it before it starts."""
     with guard.guarded():
         with pytest.raises(GuardViolation):
@@ -90,3 +99,57 @@ def test_guard_is_off_outside_the_block():
         pass
     subprocess.run(["git", "--version"], capture_output=True, timeout=10)
     assert guard.blocked() == []
+
+
+def test_os_system_git_push_is_blocked(no_repo):
+    """A push through os.system is caught too. The hook raises before any shell starts."""
+    import os
+
+    with guard.guarded(), pytest.raises(GuardViolation):
+        os.system("git push origin main")  # noqa: S605, S607 (the guard stops it before it runs)
+    assert guard.blocked()
+
+
+def test_git_push_alias_is_blocked(no_repo):
+    """`git -c alias.p=push p` hides the word push in an alias. The guard still sees it."""
+    with guard.guarded(), pytest.raises(GuardViolation):
+        subprocess.run(["git", "-c", "alias.p=push", "p"], capture_output=True, timeout=10)  # noqa: S603, S607
+
+
+def test_harmless_git_is_allowed():
+    with guard.guarded():
+        subprocess.run(["git", "--version"], capture_output=True, timeout=10)  # noqa: S603, S607
+    assert guard.blocked() == []
+
+
+def test_name_lookup_of_a_remote_host_is_blocked():
+    with guard.guarded(), pytest.raises(GuardViolation):
+        socket.getaddrinfo("example.com", 443)
+    assert guard.blocked()[0][:2] == ("lookup", "example.com")
+
+
+def test_udp_send_to_a_remote_host_is_blocked():
+    with guard.guarded(), socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s, pytest.raises(GuardViolation):
+        s.sendto(b"x", ("192.0.2.9", 53))
+
+
+@pytest.mark.parametrize("command", ["diff", "find", "patch"])
+def test_every_command_runs_under_the_guard(monkeypatch, command):
+    seen = []
+    real = guard.activate
+    monkeypatch.setattr(guard, "activate", lambda hosts=(): (seen.append(set(hosts)), real(hosts)))
+    argv = [command, str(V1), str(V2)]
+    if command != "diff":
+        argv.append(str(PY_CLIENT))
+    assert main(argv) == 0
+    assert seen == [set()]
+
+
+def test_census_runs_without_the_guard(monkeypatch, tmp_path):
+    import driftpatch.census as census
+
+    seen = []
+    monkeypatch.setattr(guard, "activate", lambda hosts=(): seen.append(hosts))
+    monkeypatch.setattr(census, "run_census", lambda *a, **k: None)
+    assert main(["census", "--root", str(tmp_path)]) == 0
+    assert seen == []

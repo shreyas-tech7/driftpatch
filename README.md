@@ -3,7 +3,7 @@
 [![CI](https://github.com/shreyas-tech7/driftpatch/actions/workflows/ci.yml/badge.svg)](https://github.com/shreyas-tech7/driftpatch/actions/workflows/ci.yml)
 
 <!-- driftpatch:status -->
-**Status:** v0.1.0-rc1, a release candidate. The rule baseline fixes 22 of 36 frozen cases with 0 regressions and the suite runs in 59 s on 2 cores. The census covers 36 release pairs of 2 real APIs.
+**Status:** v0.1.0-rc1, a release candidate. The rule baseline fixes 22 of 36 frozen cases with 0 regressions and the suite runs in 58 s on 2 cores. The census covers 36 release pairs of 2 real APIs.
 <!-- /driftpatch:status -->
 
 Every number on this page is written by `driftpatch readme` from a file in `results/`. The benchmark uses an invented API, so read the Limits part before you quote a number.
@@ -55,6 +55,8 @@ The suite has frozen cases built from one invented API, Acme Orders, with a Pyth
 Run on 2026-11-20, Intel(R) Xeon(R) Processor @ 2.30GHz, Python 3.13.18. Seed: none for the pipeline (deterministic). Bootstrap seed 7, 2000 rounds. Frozen files checked: 117.
 <!-- /driftpatch:results -->
 
+"Test pass rate after" is the mean share of the client's tests that pass after the patch. When a proposer declines a case, that case counts with its unpatched pass rate.
+
 The answer key row replays each case's known patch. It is not a proposer. It shows that every case can be solved and that the verifier accepts a correct patch.
 
 The LLM row needs a model call, and no model endpoint could be reached from the build machine. It is marked "not run" instead of filled with guesses. See [BLOCKERS.md](BLOCKERS.md).
@@ -96,10 +98,10 @@ Built-in differ counts from 2026-11-20. Method and the oasdiff counts are in [do
 | LLM (replay) | not run | not run | not run |
 | Answer key (sanity check) | $0 (no model) | 0 | 2.1 |
 
-The full rule run took 59.0 s on 2 cores (Intel(R) Xeon(R) Processor @ 2.30GHz) on 2026-11-20, against a limit of 600 s.
+The full rule run took 58.1 s on 2 cores (Intel(R) Xeon(R) Processor @ 2.30GHz) on 2026-11-20, against a limit of 600 s.
 <!-- /driftpatch:cost -->
 
-The rule baseline runs locally with no model, so it costs nothing beyond CPU time. Most of the time goes to running each client's tests twice.
+The rule baseline runs locally with no model, so it costs nothing beyond CPU time. Most of the time goes to the client's tests, which the bench runs up to three times per case: once for the unpatched pass rate, then before and after the patch.
 
 ## 10-minute run guide
 
@@ -151,6 +153,8 @@ Record mode saves each answer under `fixtures/llm/`, so later runs replay offlin
 - The built-in differ skips `allOf`, `oneOf` and `anyOf` schemas, so its census counts are a floor.
 - Rename detection is a heuristic: a removed and an added field of the same type with similar names. `x-renamed-from` in the new spec overrides it.
 - The mock server answers with the spec's examples. A client that depends on real data or on side effects is not tested.
+- The guard covers the driftpatch process itself. It blocks any git command that mentions push and any connection or name lookup that is not loopback or the model host. The client's tests run as child processes outside it, so they can do whatever your test code does. Run a client you do not trust in a sandbox.
+- `driftpatch census` is the one command that goes online, and it runs without the guard. Every other command runs under it.
 - No LLM numbers yet. See [BLOCKERS.md](BLOCKERS.md).
 
 ## Glossary

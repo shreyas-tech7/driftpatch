@@ -14,6 +14,7 @@ the leftover case when a rename has no partner (see DECISIONS.md).
 """
 
 import difflib
+import re
 from dataclasses import asdict, dataclass
 from dataclasses import field as dc_field
 
@@ -262,6 +263,9 @@ def _enum_change(old_schema, new_schema, location):
     return None
 
 
+_PATH_PARAM = re.compile(r"\{([^}]+)\}")
+
+
 def diff_specs(old_spec: dict, new_spec: dict) -> list:
     """Return the breaking changes from old_spec to new_spec, in a stable order."""
     walker = _Walker(old_spec, new_spec)
@@ -274,11 +278,15 @@ def diff_specs(old_spec: dict, new_spec: dict) -> list:
         if match is None:
             walker.add(Change(REMOVED_ENDPOINT, "endpoint", path=path, method=method), label)
             continue
-        _, new_op, new_item = match
+        new_path, new_op, new_item = match
         old_params = operation_parameters(old_spec, op, item)
         new_params = operation_parameters(new_spec, new_op, new_item)
+        # Path parameters are matched by position: /o/{order_id} and /o/{id} are the same endpoint.
+        new_to_old = dict(zip(_PATH_PARAM.findall(new_path), _PATH_PARAM.findall(path), strict=False))
+        old_to_new = {v: k for k, v in new_to_old.items()}
         for (where, name), param in new_params.items():
-            old_param = old_params.get((where, name))
+            old_name = new_to_old.get(name, name) if where == "path" else name
+            old_param = old_params.get((where, old_name))
             if param.get("required") and (old_param is None or not old_param.get("required")):
                 schema, _ = resolve(new_spec, param.get("schema") or {})
                 walker.add(
@@ -295,7 +303,7 @@ def diff_specs(old_spec: dict, new_spec: dict) -> list:
                     label,
                 )
         for (where, name), old_param in old_params.items():
-            param = new_params.get((where, name))
+            param = new_params.get((where, old_to_new.get(name, name) if where == "path" else name))
             if param is None:
                 continue
             old_schema, _ = resolve(old_spec, old_param.get("schema") or {})

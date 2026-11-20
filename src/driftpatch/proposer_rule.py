@@ -14,7 +14,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 from .differ import NEW_REQUIRED_PARAMETER, REMOVED_FIELD, RENAMED_FIELD
-from .finder import match_brace
+from .finder import PyIndex, match_brace
 from .patch import make_diff
 
 
@@ -86,14 +86,11 @@ def _py_node_at(tree, site, offsets):
 
 
 def _line_offsets(text):
-    offsets = [0]
-    for line in text.splitlines(keepends=True):
-        offsets.append(offsets[-1] + len(line))
-    return offsets
+    return PyIndex(text)
 
 
 def _span(node, offsets):
-    return offsets[node.lineno - 1] + node.col_offset, offsets[node.end_lineno - 1] + node.end_col_offset
+    return offsets.span(node)
 
 
 def _py_enclosing_function(tree, call):

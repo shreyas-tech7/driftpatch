@@ -7,10 +7,10 @@
     "date": "2026-11-20",
     "seed": "none for the pipeline (deterministic). Bootstrap seed 7, 2000 rounds.",
     "cpu": "Intel(R) Xeon(R) Processor @ 2.30GHz",
-    "cores_available": 4,
+    "cores_available": 2,
     "python": "3.13.18",
     "frozen_files_checked": 117,
-    "seconds": 75.4
+    "seconds": 74.97
   },
   "summary": {
     "all": {
@@ -128,7 +128,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.485
+      "seconds": 1.413
     },
     {
       "id": "C002",
@@ -148,7 +148,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.367
+      "seconds": 1.362
     },
     {
       "id": "C003",
@@ -168,7 +168,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.473
+      "seconds": 1.378
     },
     {
       "id": "C004",
@@ -188,7 +188,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.37
+      "seconds": 1.414
     },
     {
       "id": "C005",
@@ -208,7 +208,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.522
+      "seconds": 1.385
     },
     {
       "id": "C006",
@@ -228,7 +228,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.437
+      "seconds": 1.379
     },
     {
       "id": "C007",
@@ -248,7 +248,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.459
+      "seconds": 1.381
     },
     {
       "id": "C008",
@@ -268,7 +268,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.386
+      "seconds": 1.335
     },
     {
       "id": "C009",
@@ -288,7 +288,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.459
+      "seconds": 1.393
     },
     {
       "id": "C010",
@@ -308,7 +308,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.302
+      "seconds": 1.43
     },
     {
       "id": "C011",
@@ -328,7 +328,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.362
+      "seconds": 1.387
     },
     {
       "id": "C012",
@@ -348,7 +348,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.332
+      "seconds": 1.364
     },
     {
       "id": "C013",
@@ -368,7 +368,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.491
+      "seconds": 1.419
     },
     {
       "id": "C014",
@@ -388,7 +388,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.372
+      "seconds": 1.41
     },
     {
       "id": "C015",
@@ -408,7 +408,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.333
+      "seconds": 1.358
     },
     {
       "id": "C016",
@@ -428,7 +428,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.379
+      "seconds": 1.387
     },
     {
       "id": "C017",
@@ -448,7 +448,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.36
+      "seconds": 1.358
     },
     {
       "id": "C018",
@@ -468,7 +468,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.461
+      "seconds": 1.432
     },
     {
       "id": "C019",
@@ -488,7 +488,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.358
+      "seconds": 1.369
     },
     {
       "id": "C020",
@@ -508,7 +508,7 @@
       "patch_lines": 1,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.42
+      "seconds": 1.455
     },
     {
       "id": "C021",
@@ -528,7 +528,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.386
+      "seconds": 1.35
     },
     {
       "id": "C022",
@@ -548,7 +548,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.44
+      "seconds": 1.405
     },
     {
       "id": "C023",
@@ -568,7 +568,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.384
+      "seconds": 1.379
     },
     {
       "id": "C024",
@@ -588,7 +588,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.439
+      "seconds": 1.405
     },
     {
       "id": "C025",
@@ -608,7 +608,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.323
+      "seconds": 1.368
     },
     {
       "id": "C026",
@@ -628,7 +628,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.398
+      "seconds": 1.379
     },
     {
       "id": "C027",
@@ -648,7 +648,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.341
+      "seconds": 1.377
     },
     {
       "id": "C028",
@@ -668,7 +668,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.479
+      "seconds": 1.395
     },
     {
       "id": "C029",
@@ -688,7 +688,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.355
+      "seconds": 1.34
     },
     {
       "id": "C030",
@@ -708,7 +708,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.39
+      "seconds": 1.379
     },
     {
       "id": "C031",
@@ -728,7 +728,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.413
+      "seconds": 1.348
     },
     {
       "id": "C032",
@@ -748,7 +748,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.302
+      "seconds": 1.354
     },
     {
       "id": "C033",
@@ -768,7 +768,7 @@
       "patch_lines": 2,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.417
+      "seconds": 1.351
     },
     {
       "id": "C034",
@@ -789,7 +789,7 @@
       "patch_lines": 4,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.415
+      "seconds": 1.374
     },
     {
       "id": "C035",
@@ -810,7 +810,7 @@
       "patch_lines": 4,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.348
+      "seconds": 1.373
     },
     {
       "id": "C036",
@@ -831,7 +831,7 @@
       "patch_lines": 4,
       "tokens": 0,
       "declined": [],
-      "seconds": 1.463
+      "seconds": 1.401
     }
   ]
 }

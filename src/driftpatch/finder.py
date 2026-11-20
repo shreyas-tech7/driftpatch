@@ -63,15 +63,32 @@ def _op_keys(change):
     return keys
 
 
+_LINE = re.compile(r"[^\r\n]*(?:\r\n|\r|\n)")
+
+
 def _line_offsets(text):
+    """Start offset of every line. Only \\n, \\r\\n and \\r end a line, as in Python's tokenizer."""
     offsets = [0]
-    for line in text.splitlines(keepends=True):
-        offsets.append(offsets[-1] + len(line))
+    offsets += [m.end() for m in _LINE.finditer(text)]
+    if offsets[-1] != len(text):
+        offsets.append(len(text))
     return offsets
 
 
-def _offset(offsets, line, col):
-    return offsets[line - 1] + col
+class PyIndex:
+    """Turns ast positions into string offsets. ast columns count UTF-8 bytes, not characters."""
+
+    def __init__(self, text):
+        self.text = text
+        self.offsets = _line_offsets(text)
+
+    def pos(self, line, col_bytes):
+        start = self.offsets[line - 1]
+        end = self.offsets[line] if line < len(self.offsets) else len(self.text)
+        return start + len(self.text[start:end].encode("utf-8")[:col_bytes].decode("utf-8", "ignore"))
+
+    def span(self, node):
+        return self.pos(node.lineno, node.col_offset), self.pos(node.end_lineno, node.end_col_offset)
 
 
 def _field_kind(change):
@@ -90,16 +107,14 @@ class _PyFile:
         self.rel = rel
         self.text = text
         self.tree = ast.parse(text)
-        self.offsets = _line_offsets(text)
+        self.index = PyIndex(text)
         self.functions = {}  # name -> list of FunctionDef nodes
         for node in ast.walk(self.tree):
             if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
                 self.functions.setdefault(node.name, []).append(node)
 
     def span(self, node):
-        start = _offset(self.offsets, node.lineno, node.col_offset)
-        end = _offset(self.offsets, node.end_lineno, node.end_col_offset)
-        return start, end
+        return self.index.span(node)
 
 
 def _py_template(node):

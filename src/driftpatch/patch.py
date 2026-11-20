@@ -11,6 +11,11 @@ class PatchError(ValueError):
     pass
 
 
+def _lines(text: str) -> list:
+    """Split on \\n only. str.splitlines also splits on form feeds and other breaks, which diff tools do not."""
+    return re.findall(r"[^\n]*\n|[^\n]+\Z", text)
+
+
 def make_diff(old_files: dict, new_files: dict) -> str:
     """Unified diff with a/ and b/ prefixes for every file whose text changed."""
     out = []
@@ -21,8 +26,8 @@ def make_diff(old_files: dict, new_files: dict) -> str:
             continue
         out.extend(
             difflib.unified_diff(
-                old.splitlines(keepends=True),
-                new.splitlines(keepends=True),
+                _lines(old),
+                _lines(new),
                 fromfile=f"a/{rel}",
                 tofile=f"b/{rel}",
             )
@@ -34,7 +39,7 @@ def make_diff(old_files: dict, new_files: dict) -> str:
 def diff_size(diff_text: str) -> int:
     """Changed lines: added plus removed, headers excluded."""
     size = 0
-    for line in diff_text.splitlines():
+    for line in diff_text.split("\n"):
         if line.startswith(("+++", "---")):
             continue
         if line.startswith(("+", "-")):
@@ -44,7 +49,7 @@ def diff_size(diff_text: str) -> int:
 
 def files_in_diff(diff_text: str) -> list:
     files = []
-    for line in diff_text.splitlines():
+    for line in diff_text.split("\n"):
         if line.startswith("+++ "):
             name = line[4:].split("\t")[0].strip()
             if name.startswith("b/"):
@@ -66,7 +71,7 @@ def parse_diff(diff_text: str) -> dict:
     """Return {relpath: [hunks]} where each hunk is (old_start, lines)."""
     files = {}
     current = None
-    lines = diff_text.splitlines(keepends=True)
+    lines = _lines(diff_text)
     i = 0
     while i < len(lines):
         line = lines[i]
@@ -84,20 +89,29 @@ def parse_diff(diff_text: str) -> dict:
             if current is None:
                 raise PatchError("hunk before file header")
             old_start = int(m.group(1))
+            # The header counts say how many lines the hunk has, so a removed line such as
+            # "-- comment" is never mistaken for a "--- file" header.
+            old_left = int(m.group(2)) if m.group(2) is not None else 1
+            new_left = int(m.group(4)) if m.group(4) is not None else 1
             hunk = []
             i += 1
-            while i < len(lines) and not lines[i].startswith(("@@", "--- ")):
-                if lines[i].startswith("\\"):
+            while i < len(lines) and (old_left > 0 or new_left > 0 or lines[i].startswith("\\")):
+                line = lines[i]
+                if line.startswith("\\"):
                     if hunk:
                         tag, text = hunk[-1]
                         hunk[-1] = (tag, text.rstrip("\n"))
-                elif lines[i][:1] in (" ", "+", "-"):
-                    hunk.append((lines[i][0], lines[i][1:]))
-                elif lines[i].strip() == "":
-                    hunk.append((" ", "\n"))
+                elif line[:1] in (" ", "+", "-") or line.strip() == "":
+                    tag = line[:1] if line[:1] in (" ", "+", "-") else " "
+                    body = line[1:] if line[:1] in (" ", "+", "-") else "\n"
+                    hunk.append((tag, body))
+                    old_left -= tag in (" ", "-")
+                    new_left -= tag in (" ", "+")
                 else:
-                    raise PatchError(f"bad hunk line: {lines[i]!r}")
+                    raise PatchError(f"bad hunk line: {line!r}")
                 i += 1
+            if old_left > 0 or new_left > 0:
+                raise PatchError("hunk is shorter than its header says")
             current.append((old_start, hunk))
             continue
         i += 1
@@ -105,7 +119,7 @@ def parse_diff(diff_text: str) -> dict:
 
 
 def apply_to_text(text: str, hunks) -> str:
-    old_lines = text.splitlines(keepends=True)
+    old_lines = _lines(text)
     out = []
     pos = 0
     for old_start, hunk in hunks:
