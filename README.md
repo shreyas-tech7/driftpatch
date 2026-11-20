@@ -84,7 +84,7 @@ How often do real APIs ship these changes? driftpatch counted them across sample
 | API | Release pairs | Pairs with a breaking change | removed-endpoint | renamed-field | removed-field | new-required-parameter | changed-type | changed-enum |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | stripe/openapi | 19 | 19 | 69 | 37 | 170 | 3 | 2 | 203 |
-| github/rest-api-description | 17 | 7 | 67 | 7 | 74 | 24 | 19 | 14 |
+| github/rest-api-description | 17 | 7 | 67 | 7 | 74 | 20 | 19 | 14 |
 
 Built-in differ counts from 2026-11-20. Method and the oasdiff counts are in [docs/CENSUS.md](docs/CENSUS.md).
 <!-- /driftpatch:census -->

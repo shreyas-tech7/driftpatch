@@ -651,11 +651,11 @@
             "removed-endpoint": 0,
             "renamed-field": 2,
             "removed-field": 5,
-            "new-required-parameter": 8,
+            "new-required-parameter": 4,
             "changed-type": 1,
             "changed-enum": 0
           },
-          "builtin_total": 16,
+          "builtin_total": 12,
           "oasdiff": {
             "other": 3,
             "changed-type": 2,
@@ -878,11 +878,11 @@
         "removed-endpoint": 67,
         "renamed-field": 7,
         "removed-field": 74,
-        "new-required-parameter": 24,
+        "new-required-parameter": 20,
         "changed-type": 19,
         "changed-enum": 14
       },
-      "builtin_total": 205,
+      "builtin_total": 201,
       "pairs_with_breaking": 7,
       "oasdiff_totals": {
         "changed-enum": 87,
@@ -895,5 +895,5 @@
       "oasdiff_total": 1328
     }
   },
-  "seconds": 347.8
+  "seconds": 373.5
 }

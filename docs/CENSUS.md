@@ -20,7 +20,7 @@ The built-in differ skips `allOf`, `oneOf` and `anyOf` schemas. Stripe uses `any
 | Repo | Tags listed | Pairs | Pairs with a breaking change | removed-endpoint | renamed-field | removed-field | new-required-parameter | changed-type | changed-enum | Total |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | stripe/openapi | 2602 | 19 | 19 | 69 | 37 | 170 | 3 | 2 | 203 | 484 |
-| github/rest-api-description | 18 | 17 | 7 | 67 | 7 | 74 | 24 | 19 | 14 | 205 |
+| github/rest-api-description | 18 | 17 | 7 | 67 | 7 | 74 | 20 | 19 | 14 | 201 |
 
 ## oasdiff findings, mapped to the same kinds
 
@@ -76,7 +76,7 @@ The built-in differ skips `allOf`, `oneOf` and `anyOf` schemas. Stripe uses `any
 | v0.0.3 | v0.0.4 | 1 | 1 |
 | v0.0.4 | v0.0.5 | 5 | 5 |
 | v0.0.5 | v0.0.6 | 1 | 22 |
-| v0.0.6 | v1.0.0-rc.1 | 16 | 11 |
+| v0.0.6 | v1.0.0-rc.1 | 12 | 11 |
 | v1.0.0-rc.1 | v1.0.0-rc.2 | 0 | 0 |
 | v1.0.0-rc.2 | v1.0.0-rc.3 | 0 | 0 |
 | v1.0.0-rc.3 | v1.0.0-rc.4 | 0 | 0 |
