@@ -30,6 +30,7 @@
 - Guard widened to more process and network calls, and turned on for every command except `census`. Four new guard tests failed on the old guard and pass now. They run from an empty temp folder, because one planted push really ran from the repo during that proof (it failed, origin unchanged).
 - Census rerun after the path parameter fix. Benches rerun on 2 cores. README, site, social preview and demo regenerated.
 - Release check complete (F21). Hand-off files complete (F22). F15 stays blocked.
+- Release commit `5d362b856e0005b60e3d8e8e19831e921ebe42b7`. The next commit records this SHA in the hand-off files only.
 
 ## Next (old list, kept for the record)
 

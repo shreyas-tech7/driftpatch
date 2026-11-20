@@ -9,4 +9,4 @@ For a fresh session that picks this up.
 - The LLM row stays "not run" unless a key and network access appear. Do not invent fixtures.
 - At the end: bundle to /mnt/project-files/portfolio/bundles/driftpatch.bundle, report to /mnt/project-files/portfolio/reports/driftpatch.md, and set row 7 of /mnt/project-files/portfolio/QUEUE.md.
 
-Release commit: this commit.
+Release commit: 5d362b856e0005b60e3d8e8e19831e921ebe42b7.
