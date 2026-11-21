@@ -55,7 +55,7 @@ def breaking(old_path, new_path, timeout=120) -> list:
         raise OasdiffError("oasdiff is not installed")
     cmd = [exe, "breaking", str(old_path), str(new_path), "--format", "json", "--allow-external-refs=false"]
     try:
-        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)  # noqa: S603 (fixed argv, no shell)
     except subprocess.TimeoutExpired as err:
         raise OasdiffError(f"oasdiff timed out after {timeout}s") from err
     if proc.returncode not in (0, 1):

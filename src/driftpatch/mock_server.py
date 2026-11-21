@@ -108,7 +108,7 @@ class MockServer:
     """
 
     def __init__(self, spec: dict, host: str = "127.0.0.1", port: int = 0):
-        if host not in ("127.0.0.1", "localhost", "::1"):
+        if host not in ("127.0.0.1", "localhost"):
             raise ValueError("the mock server binds to a loopback address only")
         self.spec = spec
         self.routes = [(_compile(path), path, method.upper(), op, item) for path, method, op, item in iter_operations(spec)]

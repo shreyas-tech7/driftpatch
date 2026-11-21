@@ -26,4 +26,4 @@ No model provider key is set.
 
 - The census runs here, through tags and raw downloads.
 - LLM record mode cannot run here. See BLOCKERS.md.
-- pip-audit cannot reach its advisory database here. See docs/RELEASE_CHECK.md.
+- pip-audit works here through the PyPI advisory service. api.osv.dev is blocked, so its OSV mode does not.

@@ -103,3 +103,50 @@ def test_timeout_is_reported(tmp_path):
 def test_baseline_counts_failures():
     run = baseline(new_spec("C031"), PY_CLIENT)
     assert run.failed == ["tests.test_client::test_cancel_order"]
+
+
+def test_duplicate_test_names_are_kept_apart(tmp_path):
+    from driftpatch.verifier import _parse_junit
+
+    xml = tmp_path / "r.xml"
+    xml.write_text(
+        '<testsuites><testsuite><testcase classname="test" name="same"><failure/></testcase>'
+        '<testcase classname="test" name="same"/></testsuite></testsuites>'
+    )
+    assert _parse_junit(xml) == {"test::same": False, "test::same#2": True}
+
+
+def _tiny_client(tmp_path, body):
+    client = tmp_path / "tiny"
+    (client / "tests").mkdir(parents=True)
+    (client / "pyproject.toml").write_text('[project]\nname = "tiny"\nversion = "0"\n')
+    (client / "tests/test_env.py").write_text(body)
+    return client
+
+
+def test_secrets_do_not_reach_the_client_tests(tmp_path, monkeypatch):
+    from driftpatch.verifier import run_tests
+
+    monkeypatch.setenv("AWS_SECRET_ACCESS_KEY", "x")
+    monkeypatch.setenv("DB_PASSWORD", "x")
+    monkeypatch.setenv("GROQ_API_KEY", "x")
+    client = _tiny_client(
+        tmp_path,
+        "import os\n\ndef test_env():\n    assert not {'AWS_SECRET_ACCESS_KEY', 'DB_PASSWORD', 'GROQ_API_KEY'} & set(os.environ)\n",
+    )
+    run = run_tests(client, "http://127.0.0.1:9", "python", timeout=60)
+    assert run.results and all(run.results.values()), run.output_tail
+
+
+def test_planted_report_is_ignored(tmp_path):
+    """Code under test cannot write a fake all-pass report where the verifier reads it."""
+    from driftpatch.verifier import run_tests
+
+    body = (
+        "import os, pathlib\n\n"
+        "def test_cheat():\n"
+        "    pathlib.Path('.driftpatch-junit.xml').write_text('<testsuite><testcase name=\"x\"/></testsuite>')\n"
+        "    assert False\n"
+    )
+    run = run_tests(_tiny_client(tmp_path, body), "http://127.0.0.1:9", "python", timeout=60)
+    assert list(run.results.values()) == [False]

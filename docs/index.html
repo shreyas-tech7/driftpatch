@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>driftpatch results</title>
+<style>
+:root { --bg: #f6f7fa; --fg: #182030; --muted: #5a6478; --line: #d4d9e2; --accent: #1f7a62; }
+@media (prefers-color-scheme: dark) { :root { --bg: #141a28; --fg: #e8ecf4; --muted: #a0aabe;
+  --line: #313a4e; --accent: #6ec4aa; } }
+body { background: var(--bg); color: var(--fg); font: 16px/1.5 system-ui, sans-serif; margin: 0 auto;
+  max-width: 980px; padding: 24px 16px; }
+table { border-collapse: collapse; width: 100%; display: block; overflow-x: auto; }
+th, td { border-bottom: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+small, .muted { color: var(--muted); }
+a { color: var(--accent); }
+</style>
+</head>
+<body>
+<h1>driftpatch</h1>
+<p>driftpatch reads two versions of an OpenAPI spec, finds the client code each breaking change hits, proposes a
+patch and verifies it by running the client's own tests against a mock of the new spec. It never pushes.</p>
+<h2>Benchmark</h2>
+<table><thead><tr><th>Proposer</th><th>Cases verified (95% interval)</th><th>Test pass rate after (95% interval)</th>
+<th>Regressions</th><th>Median patch lines</th><th>Tokens</th></tr></thead><tbody><tr><th scope=row>Rule baseline</th><td>22 of 36 <small>(44.9 to 75.2)</small></td><td>95.9% <small>(94.2 to 97.5)</small></td><td>0</td><td>2.0</td><td>0</td></tr><tr><th scope=row>LLM (replay)</th><td colspan=5>not run</td></tr><tr><th scope=row>Answer key (sanity check)</th><td>36 of 36 <small>(90.4 to 100.0)</small></td><td>100.0% <small>(100.0 to 100.0)</small></td><td>0</td><td>2.0</td><td>0</td></tr></tbody></table>
+<p class="muted">Synthetic suite built from one invented API. Run 2026-11-20 on Intel(R) Xeon(R) Processor @ 2.30GHz.
+none for the pipeline (deterministic). Bootstrap seed 7, 2000 rounds.</p>
+<h2>Census of real spec histories</h2>
+<table><thead><tr><th>API</th><th>Release pairs</th><th>Pairs with a breaking change</th><th>removed-endpoint</th><th>renamed-field</th><th>removed-field</th><th>new-required-parameter</th><th>changed-type</th><th>changed-enum</th></tr></thead>
+<tbody><tr><th scope=row>stripe/openapi</th><td>19</td><td>19</td><td>69</td><td>37</td><td>170</td><td>3</td><td>2</td><td>203</td></tr><tr><th scope=row>github/rest-api-description</th><td>17</td><td>7</td><td>67</td><td>7</td><td>74</td><td>20</td><td>19</td><td>14</td></tr></tbody></table>
+<p class="muted">Built-in differ counts from 2026-11-20. The method is in docs/CENSUS.md.</p>
+<h2>Every case, rule baseline</h2>
+<table><thead><tr><th>Case</th><th>Change</th><th>Client</th><th>Split</th><th>Result</th></tr></thead>
+<tbody><tr><td>C001</td><td>Order.total renamed to total_amount</td><td>python</td><td>dev</td><td>verified</td></tr><tr><td>C002</td><td>Order.total renamed to total_amount</td><td>ts</td><td>dev</td><td>verified</td></tr><tr><td>C003</td><td>Order.customer_email renamed to email in responses</td><td>python</td><td>dev</td><td>verified</td></tr><tr><td>C004</td><td>Customer.name renamed to full_name</td><td>ts</td><td>heldout</td><td>verified</td></tr><tr><td>C005</td><td>Shipment.tracking_number renamed to tracking_code</td><td>python</td><td>heldout</td><td>verified</td></tr><tr><td>C006</td><td>LineItem.unit_price renamed to price</td><td>ts</td><td>dev</td><td>verified</td></tr><tr><td>C007</td><td>Refund.status renamed to state (Order also has a status field)</td><td>python</td><td>dev</td><td>verified</td></tr><tr><td>C008</td><td>Order.created_at renamed to created</td><td>ts</td><td>dev</td><td>verified</td></tr><tr><td>C009</td><td>CreateOrder.customer_email renamed to email in requests</td><td>python</td><td>dev</td><td>verified</td></tr><tr><td>C010</td><td>CreateOrder.note renamed to comment</td><td>ts</td><td>dev</td><td>verified</td></tr><tr><td>C011</td><td>CreateRefund.amount renamed to refund_amount</td><td>python</td><td>dev</td><td>verified</td></tr><tr><td>C012</td><td>CancelRequest.reason renamed to cancel_reason</td><td>ts</td><td>dev</td><td>verified</td></tr><tr><td>C013</td><td>LineItemInput.quantity renamed to qty</td><td>python</td><td>dev</td><td>verified</td></tr><tr><td>C014</td><td>GET /orders needs a currency query parameter (default USD)</td><td>python</td><td>heldout</td><td>verified</td></tr><tr><td>C015</td><td>GET /orders needs a currency query parameter (default USD)</td><td>ts</td><td>dev</td><td>verified</td></tr><tr><td>C016</td><td>GET /orders/{order_id}/items needs an expand query parameter (default none)</td><td>python</td><td>dev</td><td>verified</td></tr><tr><td>C017</td><td>GET /customers/{customer_id} needs a fields query parameter (default basic)</td><td>ts</td><td>dev</td><td>verified</td></tr><tr><td>C018</td><td>GET /orders/{order_id}/shipment needs a region query parameter (no default)</td><td>python</td><td>dev</td><td>no-patch-proposed</td></tr><tr><td>C019</td><td>GET /orders needs an api_version query parameter (no default)</td><td>ts</td><td>heldout</td><td>no-patch-proposed</td></tr><tr><td>C020</td><td>CreateOrder.note removed from requests</td><td>python</td><td>dev</td><td>verified</td></tr><tr><td>C021</td><td>CreateRefund.reason removed from requests</td><td>ts</td><td>dev</td><td>verified</td></tr><tr><td>C022</td><td>Order.note removed from responses</td><td>python</td><td>dev</td><td>verified</td></tr><tr><td>C023</td><td>Shipment.carrier removed from responses</td><td>python</td><td>heldout</td><td>verified</td></tr><tr><td>C024</td><td>LineItemInput.quantity changed from integer to string</td><td>python</td><td>dev</td><td>no-patch-proposed</td></tr><tr><td>C025</td><td>LineItemInput.quantity changed from integer to string</td><td>ts</td><td>heldout</td><td>no-patch-proposed</td></tr><tr><td>C026</td><td>Order.total changed from number to string</td><td>python</td><td>dev</td><td>no-patch-proposed</td></tr><tr><td>C027</td><td>CreateRefund.amount changed from number to string</td><td>ts</td><td>dev</td><td>no-patch-proposed</td></tr><tr><td>C028</td><td>Order status value open renamed to active</td><td>python</td><td>dev</td><td>no-patch-proposed</td></tr><tr><td>C029</td><td>Cancel reason fraud renamed to suspected_fraud</td><td>ts</td><td>heldout</td><td>no-patch-proposed</td></tr><tr><td>C030</td><td>Order status value cancelled respelled as canceled</td><td>python</td><td>heldout</td><td>no-patch-proposed</td></tr><tr><td>C031</td><td>POST /orders/{order_id}/cancel moved to /orders/{order_id}/cancellation</td><td>python</td><td>dev</td><td>no-patch-proposed</td></tr><tr><td>C032</td><td>GET /orders/{order_id}/items moved to /orders/{order_id}/line-items</td><td>ts</td><td>heldout</td><td>no-patch-proposed</td></tr><tr><td>C033</td><td>GET /customers/{customer_id} moved to /accounts/{customer_id}</td><td>python</td><td>dev</td><td>no-patch-proposed</td></tr><tr><td>C034</td><td>Two changes: Order.total renamed and a required currency parameter</td><td>python</td><td>heldout</td><td>verified</td></tr><tr><td>C035</td><td>Two changes: CreateOrder.note renamed and quantity changed to string</td><td>ts</td><td>dev</td><td>patch-rejected</td></tr><tr><td>C036</td><td>Two changes: cancel endpoint moved and Order.note removed</td><td>python</td><td>heldout</td><td>patch-rejected</td></tr></tbody></table>
+<p class="muted">Written by scripts/make_site.py from the results folder. See the <a href="../README.md">README</a>.</p>
+</body>
+</html>

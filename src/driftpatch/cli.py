@@ -93,9 +93,9 @@ def cmd_verify(args):
 
 
 def _allowed_hosts(args):
-    if args.proposer != "llm" or args.llm_mode != "record":
+    if getattr(args, "proposer", None) != "llm" or getattr(args, "llm_mode", None) != "record":
         return set()
-    host = Endpoint(url=args.llm_url).host
+    host = Endpoint(url=getattr(args, "llm_url", Endpoint.url)).host
     allowed = {host}
     try:
         allowed |= {info[4][0] for info in socket.getaddrinfo(host, 443)}
@@ -106,11 +106,7 @@ def _allowed_hosts(args):
 
 def cmd_run(args):
     run = pipeline.Run(args.old, args.new, args.client, _proposer(args), timeout=args.timeout, use_oasdiff=args.oasdiff)
-    if args.no_guard:
-        run.run()
-    else:
-        with guard.guarded(_allowed_hosts(args)):
-            run.run()
+    run.run()
     paths = report.write_outputs(run, args.out)
     print(f"outcome: {run.outcome}")
     print(f"states: {' -> '.join(s for s, _ in run.history)} -> END")
@@ -234,7 +230,11 @@ def main(argv=None):
     if getattr(args, "command", "") == "bench" and args.out is None:
         args.out = f"results/bench-{args.proposer}.json"
     try:
-        return args.func(args)
+        # census is the one command that goes online. Every other command runs under the guard.
+        if args.command == "census" or getattr(args, "no_guard", False):
+            return args.func(args)
+        with guard.guarded(_allowed_hosts(args)):
+            return args.func(args)
     except (SpecError, FileNotFoundError, json.JSONDecodeError) as err:
         print(f"driftpatch: error: {err}", file=sys.stderr)
         return 2

@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    paths-ignore:  # notes only. README.md is checked, so it still runs CI
+      - "docs/**"
+      - "CHANGELOG.md"
+      - "CONTRIBUTING.md"
+      - "DECISIONS.md"
+      - "BLOCKERS.md"
+      - "HANDOVER.md"
+      - "PROGRESS.md"
+      - "PROJECT_CONTEXT.md"
+      - "CLAUDE.md"
+  pull_request:
+    paths-ignore:  # notes only. README.md is checked, so it still runs CI
+      - "docs/**"
+      - "CHANGELOG.md"
+      - "CONTRIBUTING.md"
+      - "DECISIONS.md"
+      - "BLOCKERS.md"
+      - "HANDOVER.md"
+      - "PROGRESS.md"
+      - "PROJECT_CONTEXT.md"
+      - "CLAUDE.md"
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install uv
+        run: python -m pip install uv
+      - name: init.sh (install, lint, all tests offline)
+        run: ./init.sh
+      - name: Frozen cases match a fresh build
+        run: .venv/bin/python scripts/make_cases.py --check
+      - name: Demo run on the sample client
+        run: .venv/bin/driftpatch run examples/acme/specs/acme-orders-v1.json examples/acme/specs/acme-orders-v2.json examples/acme/clients/ts --out out/ci-run
+      - name: README tables match the results files
+        run: .venv/bin/driftpatch readme --check
+      - name: Results page and social preview match the results files
+        run: |
+          .venv/bin/python scripts/make_site.py --check
+          .venv/bin/python scripts/make_social_preview.py --check
+      - name: Links
+        run: .venv/bin/python scripts/check_links.py

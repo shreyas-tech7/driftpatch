@@ -142,3 +142,41 @@ def test_describe_and_count(v1):
     changes = diff_specs(v1, new)
     assert "removed" in changes[0].describe()
     assert differ.count_by_kind(changes)[differ.REMOVED_ENDPOINT] == 1
+
+
+def test_form_request_body_is_compared():
+    """Stripe sends form bodies. A new required form field counts like a JSON one."""
+
+    def spec(required):
+        body = {"type": "object", "properties": {"amount": {"type": "integer"}, "currency": {"type": "string"}}, "required": required}
+        return {
+            "openapi": "3.0.0",
+            "paths": {
+                "/charges": {
+                    "post": {
+                        "requestBody": {"content": {"application/x-www-form-urlencoded": {"schema": body}}},
+                        "responses": {"200": {"description": "ok"}},
+                    }
+                }
+            },
+        }
+
+    changes = diff_specs(spec(["amount"]), spec(["amount", "currency"]))
+    assert [(c.kind, c.field) for c in changes] == [("new-required-parameter", "currency")]
+
+
+def test_renamed_path_parameter_is_not_a_new_required_parameter():
+    def spec(name):
+        return {
+            "openapi": "3.0.0",
+            "paths": {
+                f"/orders/{{{name}}}": {
+                    "get": {
+                        "parameters": [{"name": name, "in": "path", "required": True, "schema": {"type": "string"}}],
+                        "responses": {"200": {"description": "ok"}},
+                    }
+                }
+            },
+        }
+
+    assert diff_specs(spec("order_id"), spec("id")) == []

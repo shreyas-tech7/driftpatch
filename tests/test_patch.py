@@ -42,3 +42,22 @@ def test_unsafe_path_inside_a_diff():
 def test_garbage_hunk_line():
     with pytest.raises(PatchError):
         parse_diff("--- a/x\n+++ b/x\n@@ -1 +1 @@\n?a\n")
+
+
+def test_removed_line_that_looks_like_a_header():
+    from driftpatch.patch import apply_to_text, make_diff, parse_diff
+
+    old = "a\n-- comment\nb\n"
+    new = "a\nb\n"
+    diff = make_diff({"f.sql": old}, {"f.sql": new})
+    assert "\n--- comment\n" in diff
+    assert apply_to_text(old, parse_diff(diff)["f.sql"]) == new
+
+
+def test_form_feed_is_not_a_line_break():
+    from driftpatch.patch import apply_to_text, make_diff, parse_diff
+
+    old = "x = 1\x0c\ny = 2\n"
+    new = "x = 1\x0c\ny = 3\n"
+    diff = make_diff({"f.py": old}, {"f.py": new})
+    assert apply_to_text(old, parse_diff(diff)["f.py"]) == new

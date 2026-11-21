@@ -81,9 +81,19 @@ def json_schema(content: dict):
     return None
 
 
+FORM_TYPES = ("application/x-www-form-urlencoded", "multipart/form-data")
+
+
 def request_schema(spec: dict, op: dict):
+    """The JSON request body schema, or the form body schema when there is no JSON one (Stripe sends forms)."""
     body, _ = resolve(spec, op.get("requestBody") or {})
-    return json_schema(body.get("content"))
+    content = body.get("content")
+    schema = json_schema(content)
+    if schema is None and isinstance(content, dict):
+        for media in FORM_TYPES:
+            if isinstance(content.get(media), dict):
+                return content[media].get("schema")
+    return schema
 
 
 def response_schema(spec: dict, op: dict):

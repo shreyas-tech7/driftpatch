@@ -362,7 +362,7 @@ def build_v2(v1):
 
 def splits(n):
     ids = list(range(n))
-    random.Random(SPLIT_SEED).shuffle(ids)
+    random.Random(SPLIT_SEED).shuffle(ids)  # noqa: S311 (seeded shuffle for the split, not security)
     dev = set(ids[:DEV_COUNT])
     return ["dev" if i in dev else "heldout" for i in range(n)]
 

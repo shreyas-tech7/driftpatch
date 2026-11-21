@@ -106,7 +106,7 @@
     "steps": [
       "taskset -c 0,1 .venv/bin/python scripts/time_bench.py --limit 600"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F13",
@@ -133,7 +133,8 @@
     "steps": [
       ".venv/bin/driftpatch bench --proposer llm --llm-mode replay"
     ],
-    "passes": false
+    "passes": false,
+    "blocked": "record mode blocked: model hosts answer 403 through the proxy and no key is set (BLOCKERS.md). The LLM row is 'not run'."
   },
   {
     "id": "F16",
@@ -143,7 +144,7 @@
       ".venv/bin/python -m pytest tests/test_census.py",
       "test -f docs/CENSUS.md && test -f results/census.json"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F17",
@@ -162,7 +163,7 @@
       ".venv/bin/driftpatch readme --check",
       ".venv/bin/python -m pytest tests/test_readme_sync.py"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F19",
@@ -172,7 +173,7 @@
       ".venv/bin/python -m pytest tests/test_repo_quality.py",
       ".venv/bin/python scripts/check_links.py"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F20",
@@ -181,7 +182,7 @@
     "steps": [
       ".venv/bin/python -m pytest tests/test_repo_quality.py -k study"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F21",
@@ -190,7 +191,7 @@
     "steps": [
       "test -f docs/RELEASE_CHECK.md"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F22",
@@ -199,6 +200,6 @@
     "steps": [
       ".venv/bin/python -m pytest tests/test_repo_quality.py -k handoff"
     ],
-    "passes": false
+    "passes": true
   }
 ]
