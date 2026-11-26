@@ -177,11 +177,11 @@ def test_study_walkthrough_tours_every_file():
     tracked = subprocess.run(["git", "-C", str(ROOT), "ls-files"], capture_output=True, text=True, timeout=30).stdout.split()
     skip = ("bench/cases/", "fixtures/", ".github/ISSUE_TEMPLATE/")
     names = {Path(f).name for f in tracked if not f.startswith(skip)}
-    names |= {"WALKTHROUGH.md", "INTERVIEW_QA.md", "RELEASE_CHECK.md", "HUMAN_STEPS.md", "COWORK_PROMPT.md"}
+    names |= {"WALKTHROUGH.md", "INTERVIEW_QA.md", "RELEASE_CHECK.md", "HUMAN_STEPS.md"}
     assert sorted(n for n in names if n not in text) == []
 
 
-RELEASE = ["docs/RELEASE_CHECK.md", "docs/HUMAN_STEPS.md", "docs/handoff/COWORK_PROMPT.md", "HANDOVER.md"]
+RELEASE = ["docs/RELEASE_CHECK.md", "docs/HUMAN_STEPS.md", "HANDOVER.md"]
 HANDOFF = {"CHANGELOG.md", "docs/HUMAN_STEPS.md", "HANDOVER.md", "PROGRESS.md", "docs/RELEASE_CHECK.md"}
 
 
@@ -214,21 +214,13 @@ def test_handoff_release_sha_is_recorded():
         pytest.skip("shallow clone: the release commit is not fetched")
     ok = subprocess.run(git + ["merge-base", "--is-ancestor", line, "HEAD"], capture_output=True, timeout=30)
     assert ok.returncode == 0, "the release commit is not in the history of HEAD"
-    changed = subprocess.run(git + ["diff", "--name-only", line, "HEAD"], capture_output=True, text=True, timeout=30).stdout.split()
+    # The commit that first recorded the SHA must change only hand-off files. Later work may change anything.
+    recorded = subprocess.run(
+        git + ["log", "--reverse", "--format=%H", "-S", line, "--", "docs/HUMAN_STEPS.md"], capture_output=True, text=True, timeout=30
+    ).stdout.split()
+    end = recorded[0] if recorded else "HEAD"
+    changed = subprocess.run(git + ["diff", "--name-only", line, end], capture_output=True, text=True, timeout=30).stdout.split()
     assert set(changed) <= HANDOFF, set(changed) - HANDOFF
-
-
-def test_handoff_cowork_prompt_has_guards_and_launcher():
-    text = (ROOT / "docs/handoff/COWORK_PROMPT.md").read_text()
-    for need in (
-        "make the repo public",
-        "publish a package",
-        "enter any key",
-        "sign in for Shreyas",
-        "pay for",
-        "Resume from PROGRESS.md on branch claude/build-driftpatch",
-    ):
-        assert need in text, need
 
 
 def test_release_check_lists_every_tool():

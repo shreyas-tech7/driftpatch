@@ -64,7 +64,7 @@ This is the step the build could not do. The proxy blocked every model host (`BL
 
 ## 7. Make the repo public
 
-All history becomes public at that moment. Read `docs/build/BUILD_PROMPT.md` first.
+Done 2026-11-26: the repo is public.
 
 ## 8. Turn on Pages
 
@@ -89,7 +89,7 @@ CI skips the real oasdiff test because oasdiff is not installed there. Adding `g
 
 ## 13. Decide whether the build prompt stays public
 
-`docs/build/BUILD_PROMPT.md` holds the full prompt the agents followed. Keep it, trim it or remove it before the repo goes public.
+`docs/build/BUILD_PROMPT.md` holds the full prompt the agents followed. Keep it, trim it or remove it.
 
 ## 14. Update the human checks in the README
 

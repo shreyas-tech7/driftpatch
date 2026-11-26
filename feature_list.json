@@ -196,7 +196,7 @@
   {
     "id": "F22",
     "area": "handoff",
-    "description": "Hand-off: CHANGELOG v0.1.0-rc1 with the release SHA, HUMAN_STEPS, COWORK_PROMPT, GITHUB_ABOUT and topics",
+    "description": "Hand-off: CHANGELOG v0.1.0-rc1 with the release SHA, HUMAN_STEPS, GITHUB_ABOUT and topics",
     "steps": [
       ".venv/bin/python -m pytest tests/test_repo_quality.py -k handoff"
     ],
