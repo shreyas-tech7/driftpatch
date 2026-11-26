@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "driftpatch"
 version = "0.1.0rc1"
-description = "Find the client code an OpenAPI spec change breaks, write a patch, and prove the patch works before a human sees it."
+description = "Find the client code an OpenAPI spec change breaks, write a patch, and check it against the client's own tests before a human sees it."
 readme = "README.md"
 license = { text = "MIT" }
 authors = [{ name = "Shreyas" }]

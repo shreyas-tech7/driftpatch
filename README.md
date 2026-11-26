@@ -89,6 +89,8 @@ How often do real APIs ship these changes? driftpatch counted them across sample
 Built-in differ counts from 2026-11-20. Method and the oasdiff counts are in [docs/CENSUS.md](docs/CENSUS.md).
 <!-- /driftpatch:census -->
 
+A rename is a guess: a field is gone and a new field of the same type appeared. Some are a removal plus an unrelated addition.
+
 ## Cost per task
 
 <!-- driftpatch:cost -->
@@ -105,7 +107,7 @@ The rule baseline runs locally with no model, so it costs nothing beyond CPU tim
 
 ## 10-minute run guide
 
-The repo is private for now, so the clone works only for people with access until it goes public. You need Python 3.11 or newer and Node 22 or newer.
+You need Python 3.11 or newer and Node 22 or newer.
 
 ```bash
 git clone https://github.com/shreyas-tech7/driftpatch.git
